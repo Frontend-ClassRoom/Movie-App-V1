@@ -13,6 +13,7 @@ const Main = () => {
   const [post, setPost] = useState<Posts[]>();
 
   const fetchPosts = async () => {
+    // fetch Hook 사용 여부 확인필요
     const posts = await getPosts();
     if (posts) {
       const slicePosts = posts.slice(0, 10);

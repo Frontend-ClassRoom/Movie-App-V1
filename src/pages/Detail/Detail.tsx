@@ -1,5 +1,5 @@
 import { getPostDetail } from "api/postApi";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Posts } from "types/posts";
@@ -13,6 +13,7 @@ const Detail = () => {
   const [detail, setDetail] = useState<Posts>();
 
   const fetchPostDetail = async () => {
+    // fetch Hook 사용 여부 확인필요 => ex) useAxios
     if (!id) return;
     const postId = parseInt(id);
     const post = await getPostDetail(postId);
