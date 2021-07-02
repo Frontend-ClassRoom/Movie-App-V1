@@ -8,3 +8,8 @@ export const getPosts = () => {
   const url = `${BASE_URL}/posts`;
   return axios.get<Posts[]>(url).then(AxiosReturn);
 };
+
+export const getPostDetail = (postId: number) => {
+  const url = `${BASE_URL}/posts/${postId}`;
+  return axios.get<Posts>(url).then(AxiosReturn);
+};

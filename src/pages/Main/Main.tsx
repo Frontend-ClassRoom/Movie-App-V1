@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Posts } from "types/posts";
 import { getPosts } from "api/postApi";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 /**
  * @description
  * Page의 Layout은 공통으로 뽑아서 사용? 폴더 내부에서 선언?
  */
 const Main = () => {
+  const history = useHistory();
   const [post, setPost] = useState<Posts[]>();
 
   const fetchPosts = async () => {
@@ -18,6 +20,10 @@ const Main = () => {
     }
   };
 
+  const handleDetailPost = (postId: number) => {
+    if (!postId) return;
+    history.push(`/${postId}`);
+  };
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -30,7 +36,7 @@ const Main = () => {
           {post.length > 0 && (
             <ul>
               {post.map(({ id, userId, title, body }, index) => (
-                <li key={index}>
+                <li key={index} onClick={() => handleDetailPost(id)}>
                   <p>
                     <strong>UserId</strong>
                     <span>{userId}</span>
@@ -61,9 +67,9 @@ const StyledMain = styled.div`
     margin-bottom: 20px;
   }
   ul li {
-    &:not(:first-child) {
-      margin-top: 20px;
-    }
+    padding: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
     p {
       display: flex;
       > strong {
@@ -72,6 +78,12 @@ const StyledMain = styled.div`
       &:not(:first-child) {
         margin-top: 8px;
       }
+    }
+    &:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    &:not(:first-child) {
+      margin-top: 20px;
     }
   }
 `;
