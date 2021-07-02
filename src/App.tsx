@@ -1,12 +1,14 @@
 import React from "react";
-import { GlobalStyle } from "./styles/globalStyles";
+import { BrowserRouter as Routes } from "react-router-dom";
+import { GlobalStyle } from "styles/globalStyles";
+import { AppRoute } from "routes";
 
 function App() {
   return (
-    <>
-      app
+    <Routes>
       <GlobalStyle />
-    </>
+      <AppRoute />
+    </Routes>
   );
 }
 
