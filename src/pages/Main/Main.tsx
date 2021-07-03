@@ -11,12 +11,15 @@ import useAsync from "hook/useAsync";
  */
 const Main = () => {
   const history = useHistory();
-  const { data: post } = useAsync<Posts[]>(getPosts);
+  const { execute, data: post } = useAsync<Posts[]>(getPosts); // useAsync<Posts[]>(getPosts, true) => 이벤트로 fetch
   /**
    *
    * @description useAxios
    *
    * execute => useAsync Promise 함수를 실행하는 함수
+   * useAsnyc 인자 2번째 값을 false로 전달하고 execute를 가져와서
+   * 버튼 onClick 또는 이벤트를 통해 데이터를 갱신 할 경우 해당 이벤트에 execute 실행
+   *
    * data => Promise 결과를 담는 결과값
    * status => 함수 실행시 현재 상태를 나타내는 값 ( "idle" | "pending" | "success" | "error" )
    * error => error 발생시 error 결과값
@@ -35,6 +38,7 @@ const Main = () => {
 
   return (
     <StyledMain>
+      {/* <button onClick={execute}>click</button> */}
       {post && (
         <>
           <h1>{`posts length : ${post.length}`}</h1>
