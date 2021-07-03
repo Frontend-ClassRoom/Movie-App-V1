@@ -6,7 +6,7 @@ const BASE_URL = "https://jsonplaceholder.typicode.com";
 
 export const getPosts = () => {
   const url = `${BASE_URL}/posts`;
-  return axios.get<Posts[]>(url).then(AxiosReturn);
+  return axios.get<Posts[]>(url).then((res) => res.data);
 };
 
 export const getPostDetail = (postId: number) => {
