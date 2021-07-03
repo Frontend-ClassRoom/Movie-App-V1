@@ -41,10 +41,10 @@ const Main = () => {
       {/* <button onClick={execute}>click</button> */}
       {post && (
         <>
-          <h1>{`posts length : ${post.length}`}</h1>
+          <h1>{`posts length : ${post.slice(0, 10).length}`}</h1>
           {post.length > 0 && (
             <ul>
-              {post.map(({ id, userId, title, body }, index) => (
+              {post.slice(0, 10).map(({ id, userId, title, body }, index) => (
                 <li key={index} onClick={() => handleDetailPost(id)}>
                   <p>
                     <strong>UserId</strong>
