@@ -12,6 +12,14 @@ import useAsync from "hook/useAsync";
 const Main = () => {
   const history = useHistory();
   const { execute, data: post } = useAsync<Posts[]>(getPosts); // useAsync<Posts[]>(getPosts, true) => 이벤트로 fetch
+  const [test, setTest] = useState<Posts[]>();
+
+  useEffect(() => {
+    if (post && !test) {
+      const slicePost = post.slice(0, 10);
+      setTest(slicePost);
+    }
+  }, [post]);
   /**
    *
    * @description useAxios
@@ -25,12 +33,13 @@ const Main = () => {
    * error => error 발생시 error 결과값
    *
    * @todo
-   * 렌더링 확인하기 => data 결과 값이 2번 발생
+   * 렌더링 확인하기 => data 결과 값이 2번 발생 => state 추가로 useEffect 조건처리
    * 현재 AxiosRetun utils 함수를 사용하지 못함, 수정 및 사용여부 다시 확인
    * (useAsync Hook 의 상태값을 변경못함)
    *
    */
 
+  console.log(test);
   const handleDetailPost = (postId: number) => {
     if (!postId) return;
     history.push(`/${postId}`);
@@ -39,12 +48,12 @@ const Main = () => {
   return (
     <StyledMain>
       {/* <button onClick={execute}>click</button> */}
-      {post && (
+      {test && (
         <>
-          <h1>{`posts length : ${post.slice(0, 10).length}`}</h1>
-          {post.length > 0 && (
+          <h1>{`posts length : ${test.length}`}</h1>
+          {test.length > 0 && (
             <ul>
-              {post.slice(0, 10).map(({ id, userId, title, body }, index) => (
+              {test.map(({ id, userId, title, body }, index) => (
                 <li key={index} onClick={() => handleDetailPost(id)}>
                   <p>
                     <strong>UserId</strong>
