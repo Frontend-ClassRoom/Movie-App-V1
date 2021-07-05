@@ -1,6 +1,6 @@
 import React from "react";
 
-interface TextInputProps {
+interface InputBoxProps {
   value: string | number;
   type: string;
   placeholder?: string;
@@ -8,13 +8,13 @@ interface TextInputProps {
   submit: () => void;
 }
 
-const TextInput = ({
+const InputBox = ({
   value,
   type,
   onChange,
   placeholder = "입력해주세요.",
   submit,
-}: TextInputProps) => {
+}: InputBoxProps) => {
   return (
     <span style={{ display: "block", width: "100%", marginBottom: "10px" }}>
       <input
@@ -30,4 +30,4 @@ const TextInput = ({
   );
 };
 
-export default TextInput;
+export default InputBox;

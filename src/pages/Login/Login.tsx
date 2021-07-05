@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
-import { TextInput } from "component";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { InputBox } from "component/InputBox";
 
 const Login = () => {
   const history = useHistory();
@@ -48,14 +48,14 @@ const Login = () => {
   return (
     <StyledLogin>
       <LoginForm>
-        <TextInput
+        <InputBox
           value={userId}
           type="text"
           onChange={onChangeUserId}
           placeholder="아이디 입력"
           submit={setLoginUser}
         />
-        <TextInput
+        <InputBox
           value={userPassword}
           type="password"
           onChange={onChangeUserPassword}
