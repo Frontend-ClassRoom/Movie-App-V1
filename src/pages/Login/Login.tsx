@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { InputBox } from "component/InputBox";
+import { InputBox, Button } from "component";
 
 const Login = () => {
   const history = useHistory();
@@ -47,6 +47,8 @@ const Login = () => {
 
   return (
     <StyledLogin>
+      <h2>Welcome to MovieApp</h2>
+      <p>Your personal guide to the world of cinema</p>
       <LoginForm>
         <InputBox
           value={userId}
@@ -62,9 +64,12 @@ const Login = () => {
           placeholder="비밀번호 입력"
           submit={setLoginUser}
         />
-        <button style={{ width: "100%" }} onClick={setLoginUser}>
-          로그인
-        </button>
+        <Button link label="Forgot password?" />
+        <Button
+          style={{ width: "100%" }}
+          onClick={setLoginUser}
+          label="로그인"
+        />
       </LoginForm>
     </StyledLogin>
   );
@@ -76,8 +81,7 @@ const StyledLogin = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100vh;
+  flex-direction: column;
 `;
 
 const LoginForm = styled.div`
