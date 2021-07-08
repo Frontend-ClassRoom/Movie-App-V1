@@ -44,6 +44,7 @@ const initialState: AuthState = {
 
 //reducer
 const authReducer = (state = initialState, action: AuthActionType | any) => {
+  // redux-persist typescript 에러 발생 action type이 any를 가져야 작동함
   switch (action.type) {
     case 'auth/SET_LOGIN':
       return {
