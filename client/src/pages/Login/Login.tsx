@@ -1,16 +1,20 @@
-import { useCallback, useState } from "react";
-import { TextInput } from "component";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
+import { useCallback, useState } from 'react';
+import { TextInput } from 'component';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/reducer';
+import { LoginAction } from 'store/reducer/Auth';
 
 const Login = () => {
   const history = useHistory();
-  const [userId, setUserId] = useState<string>("");
-  const [userPassword, setUserPassword] = useState<string>("");
+  const dispatch = useDispatch();
+  const [userId, setUserId] = useState<string>('');
+  const [userPassword, setUserPassword] = useState<string>('');
 
   const clearInput = () => {
-    setUserId("");
-    setUserPassword("");
+    setUserId('');
+    setUserPassword('');
   };
 
   const onChangeUserId = useCallback(
@@ -28,10 +32,8 @@ const Login = () => {
   );
 
   const setLoginUser = useCallback(() => {
-    const userCheck = false; // 임시 로그인 성공 리턴값 이 값이 true면 path 이동
-
     if (userId.trim().length === 0 || userPassword.trim().length === 0) {
-      alert("입력 오류");
+      alert('입력 오류');
       return;
     }
 
@@ -39,10 +41,14 @@ const Login = () => {
      * Submit Logic
      */
 
-    if (userCheck) {
-      history.push("/");
-      clearInput();
-    }
+    const loginUser = {
+      id: userId,
+      name: `${userId}#123`, // test
+    };
+
+    dispatch(LoginAction(loginUser));
+    history.push('/');
+    clearInput();
   }, [userId, userPassword]);
 
   return (
@@ -62,7 +68,7 @@ const Login = () => {
           placeholder="비밀번호 입력"
           submit={setLoginUser}
         />
-        <button style={{ width: "100%" }} onClick={setLoginUser}>
+        <button style={{ width: '100%' }} onClick={setLoginUser}>
           로그인
         </button>
       </LoginForm>
