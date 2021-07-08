@@ -1,8 +1,7 @@
-import React, { HTMLAttributes } from "react";
-import { StyledButton } from "./Styled";
+import React, { HTMLAttributes } from 'react';
+import { StyledButton } from './Styled';
 
-export interface ButtonProps
-  extends Omit<HTMLAttributes<HTMLButtonElement>, "css"> {
+export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   label: string;
   variant?: ButtonVariant;
   size?: size;
@@ -10,8 +9,8 @@ export interface ButtonProps
   link?: boolean;
 }
 
-export type size = "sm" | "md" | "lg";
-export type ButtonVariant = "default" | "primary" | "secondary" | "icon";
+export type size = 'sm' | 'md' | 'lg';
+export type ButtonVariant = 'default' | 'primary' | 'secondary' | 'icon';
 
 export const Button = (props: ButtonProps) => {
   return (

@@ -14,6 +14,17 @@ interface Breakpoints extends Array<string> {
   tablet: string;
 }
 
+interface ColorType {
+  lightest?: string;
+  lighter?: string;
+  light: string;
+  main?: string;
+  primary?: string;
+  dark: string;
+  darker?: string;
+  darkest?: string;
+}
+
 interface TextType {
   fontSize: string;
   fontWeight?: string;
@@ -22,11 +33,25 @@ interface TextType {
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    breakpoints: Breakpoints;
-
+    breakpoints: BreakpointSizes;
     mediaQueries: {
       min: BreakpointSizes;
       max: BreakpointSizes;
+    };
+
+    colors: {
+      primary: string; // 녹색
+      secondary: string; // 갈색
+      success: string; // 파란색
+      info: string; // 보라색
+      warning: string; // 노란색
+      error: string; // 빨강색
+      greys: {
+        black: string;
+        grey1: string;
+        grey2: string;
+        white: string;
+      };
     };
   }
 }

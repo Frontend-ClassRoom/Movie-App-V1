@@ -1,24 +1,39 @@
-/**
- * @description
- * 앱 기본 범위 정하기, 반응형 구간 정하기 => 원묵선임님 확인받기
- */
-const sizes = {
-  mobileS: "320px",
-  mobileM: "375px",
-  mobileL: "425px",
-  tablet: "768px",
+const breakpoints = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
 };
 
 const theme = {
-  primaryColors: {
-    dkGreyBg: "#f2f1f0", // background
-    dkFontColor: "#333", // font color
+  breakpoints: breakpoints,
+  mediaQueries: {
+    min: {
+      mobileS: `@media screen and (min-width: ${breakpoints.mobileS})`,
+      mobileM: `@media screen and (min-width: ${breakpoints.mobileM})`,
+      mobileL: `@media screen and (min-width: ${breakpoints.mobileL})`,
+      tablet: `@media screen and (min-width: ${breakpoints.tablet})`,
+    },
+    max: {
+      mobileS: `@media screen and (max-width: ${breakpoints.mobileS})`,
+      mobileM: `@media screen and (max-width: ${breakpoints.mobileM})`,
+      mobileL: `@media screen and (max-width: ${breakpoints.mobileL})`,
+      tablet: `@media screen and (max-width: ${breakpoints.tablet})`,
+    },
   },
-  breakpoints: {
-    mobileS: `(min-width: ${sizes.mobileS})`,
-    mobileM: `(min-width: ${sizes.mobileM})`,
-    mobileL: `(min-width: ${sizes.mobileL})`,
-    tablet: `(min-width: ${sizes.tablet})`,
+  colors: {
+    primary: '#a5d6a7',
+    secondary: '#bcaaa4',
+    success: '#9ed2f6',
+    info: '#e4dfff',
+    warning: '#fcdc8b',
+    error: '#fb5558',
+    greys: {
+      black: '#2e2d2d',
+      grey1: '#828181',
+      grey2: '#f7f7f7',
+      white: '#ffffff',
+    },
   },
 };
 
