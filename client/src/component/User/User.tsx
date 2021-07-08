@@ -4,9 +4,10 @@ import styled from 'styled-components';
 
 interface UserProps {
   user: AuthState;
+  logout: () => void;
 }
 
-const User = ({ user }: UserProps) => {
+const User = ({ user, logout }: UserProps) => {
   return (
     <StyledUser>
       <p>{`접속 유저 : ${user.user.id}`}</p>
@@ -14,6 +15,9 @@ const User = ({ user }: UserProps) => {
       <p>
         접속 여부 : <span>{`${user.isLoggedIn ? '접속중' : '접속종료'}`}</span>
       </p>
+      <button type="button" onClick={logout} title="로그아웃">
+        로그아웃
+      </button>
     </StyledUser>
   );
 };
@@ -32,5 +36,11 @@ const StyledUser = styled.div`
     &:not(:first-child) {
       margin-top: 10px;
     }
+  }
+  button {
+    margin-top: 10px;
+    width: 100%;
+    outline: none;
+    border: none;
   }
 `;

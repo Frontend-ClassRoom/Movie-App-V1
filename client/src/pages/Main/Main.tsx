@@ -4,9 +4,10 @@ import { getPosts } from 'api/postApi';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import useAsync from 'hook/useAsync';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/reducer';
 import User from 'component/User/User';
+import { LogoutAction } from 'store/reducer/Auth';
 /**
  * @description
  * Page의 Layout은 공통으로 뽑아서 사용? 폴더 내부에서 선언?
@@ -14,6 +15,7 @@ import User from 'component/User/User';
 const Main = () => {
   const history = useHistory();
   const login = useSelector((state: RootState) => state.AuthReducer);
+  const dispatch = useDispatch();
   const { execute, data: post } = useAsync<Posts[]>(getPosts); // useAsync<Posts[]>(getPosts, true) => 이벤트로 fetch
   const [test, setTest] = useState<Posts[]>();
 
@@ -47,10 +49,16 @@ const Main = () => {
     history.push(`/${postId}`);
   };
 
+  const handleLogout = () => {
+    if (login.isLoggedIn) {
+      dispatch(LogoutAction());
+    }
+  };
+
   return (
     <StyledMain>
       {/* <button onClick={execute}>click</button> */}
-      <User user={login} />
+      <User user={login} logout={handleLogout} />
       {test && (
         <>
           <h1>{`posts length : ${test.length}`}</h1>
