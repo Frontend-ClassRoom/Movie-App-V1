@@ -17,13 +17,17 @@ const Main = () => {
   const login = useSelector((state: RootState) => state.AuthReducer);
   const dispatch = useDispatch();
   const { execute, data: post } = useAsync<Posts[]>(getPosts); // useAsync<Posts[]>(getPosts, true) => 이벤트로 fetch
-  const [test, setTest] = useState<Posts[]>();
+  const [posts, setPosts] = useState<Posts[]>();
 
   useEffect(() => {
-    if (post && !test) {
+    if (post && !posts) {
       const slicePost = post.slice(0, 10);
-      setTest(slicePost);
+      setPosts(slicePost);
     }
+
+    return () => {
+      setPosts([]);
+    };
   }, [post]);
   /**
    *
@@ -59,12 +63,12 @@ const Main = () => {
     <StyledMain>
       {/* <button onClick={execute}>click</button> */}
       <User user={login} logout={handleLogout} />
-      {test && (
+      {posts && (
         <>
-          <h1>{`posts length : ${test.length}`}</h1>
-          {test.length > 0 && (
+          <h1>{`posts length : ${posts.length}`}</h1>
+          {posts.length > 0 && (
             <ul>
-              {test.map(({ id, userId, title, body }, index) => (
+              {posts.map(({ id, userId, title, body }, index) => (
                 <li key={index} onClick={() => handleDetailPost(id)}>
                   <p>
                     <strong>UserId</strong>

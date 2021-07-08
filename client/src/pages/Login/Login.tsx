@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { TextInput } from 'component';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -9,8 +9,15 @@ import { LoginAction } from 'store/reducer/Auth';
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state: RootState) => state.AuthReducer);
   const [userId, setUserId] = useState<string>('');
   const [userPassword, setUserPassword] = useState<string>('');
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push('/');
+    }
+  }, [isLoggedIn]);
 
   const clearInput = () => {
     setUserId('');
@@ -31,44 +38,44 @@ const Login = () => {
     [userPassword]
   );
 
-  const setLoginUser = useCallback(() => {
-    if (userId.trim().length === 0 || userPassword.trim().length === 0) {
-      alert('입력 오류');
-      return;
-    }
+  const setLoginUser = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (userId.trim().length === 0 || userPassword.trim().length === 0) {
+        alert('입력 오류');
+        return;
+      }
+      /**
+       * Submit Logic
+       */
+      const loginUser = {
+        id: userId,
+        name: `${userId}#123`, // test
+      };
 
-    /**
-     * Submit Logic
-     */
-
-    const loginUser = {
-      id: userId,
-      name: `${userId}#123`, // test
-    };
-
-    dispatch(LoginAction(loginUser));
-    history.push('/');
-    clearInput();
-  }, [userId, userPassword]);
+      dispatch(LoginAction(loginUser));
+      history.push('/');
+      clearInput();
+    },
+    [userId, userPassword]
+  );
 
   return (
     <StyledLogin>
-      <LoginForm>
+      <LoginForm onSubmit={setLoginUser}>
         <TextInput
           value={userId}
           type="text"
           onChange={onChangeUserId}
           placeholder="아이디 입력"
-          submit={setLoginUser}
         />
         <TextInput
           value={userPassword}
           type="password"
           onChange={onChangeUserPassword}
           placeholder="비밀번호 입력"
-          submit={setLoginUser}
         />
-        <button style={{ width: '100%' }} onClick={setLoginUser}>
+        <button type="submit" style={{ width: '100%' }} onClick={setLoginUser}>
           로그인
         </button>
       </LoginForm>
@@ -86,7 +93,7 @@ const StyledLogin = styled.div`
   height: 100vh;
 `;
 
-const LoginForm = styled.div`
+const LoginForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;

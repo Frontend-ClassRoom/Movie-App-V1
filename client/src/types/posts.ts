@@ -4,3 +4,12 @@ export interface Posts {
   title: string;
   body: string;
 }
+
+export function getEmptyPosts() {
+  return {
+    userId: 0,
+    id: 0,
+    title: '',
+    body: '',
+  };
+}

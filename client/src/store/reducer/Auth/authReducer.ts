@@ -30,7 +30,9 @@ export const LogoutAction = () => {
   };
 };
 
-export type AuthActionType = ReturnType<typeof LoginAction> | ReturnType<typeof LogoutAction>;
+export type AuthActionType =
+  | ReturnType<typeof LoginAction>
+  | ReturnType<typeof LogoutAction>;
 
 const initialState: AuthState = {
   user: {
@@ -41,7 +43,7 @@ const initialState: AuthState = {
 };
 
 //reducer
-const authReducer = (state = initialState, action: AuthActionType) => {
+const authReducer = (state = initialState, action: AuthActionType | any) => {
   switch (action.type) {
     case 'auth/SET_LOGIN':
       return {
