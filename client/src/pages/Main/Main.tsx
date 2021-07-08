@@ -7,7 +7,7 @@ import useAsync from 'hook/useAsync';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/reducer';
 import User from 'component/User/User';
-import { LogoutAction } from 'store/reducer/Auth';
+import { LogoutAction } from 'store/action';
 /**
  * @description
  * Page의 Layout은 공통으로 뽑아서 사용? 폴더 내부에서 선언?

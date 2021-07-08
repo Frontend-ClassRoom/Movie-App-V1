@@ -1,3 +1,5 @@
+import { LoginAction, LogoutAction } from 'store/action';
+
 // action type
 export const SET_LOGIN = 'auth/SET_LOGIN' as const;
 export const SET_LOGOUT = 'auth/SET_LOGOUT' as const;
@@ -11,24 +13,6 @@ export interface AuthState {
   user: User;
   isLoggedIn: boolean;
 }
-
-// action creator
-export const LoginAction = (user: User) => {
-  return {
-    type: SET_LOGIN,
-    user,
-  };
-};
-
-export const LogoutAction = () => {
-  return {
-    type: SET_LOGOUT,
-    user: {
-      id: '',
-      name: '',
-    },
-  };
-};
 
 export type AuthActionType =
   | ReturnType<typeof LoginAction>
@@ -44,6 +28,7 @@ const initialState: AuthState = {
 
 //reducer
 const authReducer = (state = initialState, action: AuthActionType | any) => {
+  // redux-persist typescript 에러 발생 action type이 any를 가져야 작동함
   switch (action.type) {
     case 'auth/SET_LOGIN':
       return {
