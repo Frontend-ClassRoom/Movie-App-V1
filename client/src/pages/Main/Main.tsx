@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Posts } from "types/posts";
-import { getPosts } from "api/postApi";
-import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import useAsync from "hook/useAsync";
-
+import React, { useEffect, useState } from 'react';
+import { Posts } from 'types/posts';
+import { getPosts } from 'api/postApi';
+import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+import useAsync from 'hook/useAsync';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/reducer';
+import User from 'component/User/User';
 /**
  * @description
  * Page의 Layout은 공통으로 뽑아서 사용? 폴더 내부에서 선언?
  */
 const Main = () => {
   const history = useHistory();
+  const login = useSelector((state: RootState) => state.AuthReducer);
   const { execute, data: post } = useAsync<Posts[]>(getPosts); // useAsync<Posts[]>(getPosts, true) => 이벤트로 fetch
   const [test, setTest] = useState<Posts[]>();
 
@@ -39,7 +42,6 @@ const Main = () => {
    *
    */
 
-  console.log(test);
   const handleDetailPost = (postId: number) => {
     if (!postId) return;
     history.push(`/${postId}`);
@@ -48,6 +50,7 @@ const Main = () => {
   return (
     <StyledMain>
       {/* <button onClick={execute}>click</button> */}
+      <User user={login} />
       {test && (
         <>
           <h1>{`posts length : ${test.length}`}</h1>
