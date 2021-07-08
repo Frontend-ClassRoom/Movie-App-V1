@@ -61,43 +61,33 @@ const Login = () => {
   );
 
   return (
-    <StyledLogin>
-      <LoginForm onSubmit={setLoginUser}>
-        <TextInput
+    <StyledWrapper>
+      <StyledTitle>Welcome to MovieApp</StyledTitle>
+      <StyledText>Your personal guide to the world of cinema</StyledText>
+      <LoginForm>
+        <InputBox
           value={userId}
           type="text"
           onChange={onChangeUserId}
           placeholder="아이디 입력"
+          submit={setLoginUser}
+          className="login-form"
         />
-        <TextInput
+        <InputBox
           value={userPassword}
           type="password"
           onChange={onChangeUserPassword}
           placeholder="비밀번호 입력"
+          submit={setLoginUser}
+          className="login-form"
         />
-        <button type="submit" style={{ width: '100%' }} onClick={setLoginUser}>
-          로그인
-        </button>
+        <p className="forget-pw">
+          <Button variant="link" label="Forgot password?" />
+        </p>
+        <Button size="large" style={{ width: '100%' }} onClick={setLoginUser} label="로그인" />
       </LoginForm>
-    </StyledLogin>
+    </StyledWrapper>
   );
 };
 
 export default Login;
-
-const StyledLogin = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-`;
-
-const LoginForm = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  max-width: 200px;
-  width: 100%;
-`;
