@@ -21,8 +21,9 @@ const AppRoute: FC = () => {
 export default AppRoute;
 
 const StyledLayout = styled.div`
+  margin: 0 auto;
+  padding: 0 1em;
   max-width: 768px;
   height: 100vh;
   min-height: 500px;
-  margin: 0 auto;
 `;

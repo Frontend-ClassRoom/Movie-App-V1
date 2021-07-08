@@ -9,13 +9,13 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   link?: boolean;
 }
 
-export type size = 'sm' | 'md' | 'lg';
-export type ButtonVariant = 'default' | 'primary' | 'secondary' | 'icon';
+export type size = 'basic' | 'tiny' | 'small' | 'medium' | 'large';
+export type ButtonVariant = 'default' | 'primary' | 'secondary' | 'link';
 
 export const Button = (props: ButtonProps) => {
   return (
     <StyledButton {...props} disabled={props.disabled}>
-      {props.label}
+      <span className="label">{props.label}</span>
     </StyledButton>
   );
 };

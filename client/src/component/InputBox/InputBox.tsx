@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { StyledInputBox } from './Styled';
 
 interface InputBoxProps {
   value: string | number;
@@ -6,27 +7,22 @@ interface InputBoxProps {
   placeholder?: string;
   onChange: (userValue: string) => void;
   submit: () => void;
+  className?: string;
 }
 
-const InputBox = ({
-  value,
-  type,
-  onChange,
-  placeholder = "입력해주세요.",
-  submit,
-}: InputBoxProps) => {
+const InputBox = ({ value, type, onChange, placeholder = '입력해주세요.', submit, className }: InputBoxProps) => {
   return (
-    <span style={{ display: "block", width: "100%", marginBottom: "10px" }}>
+    <StyledInputBox className={className}>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        onKeyPress={(e) => e.key === "Enter" && submit()}
+        onKeyPress={(e) => e.key === 'Enter' && submit()}
         placeholder={placeholder}
         title={placeholder}
-        style={{ width: "100%" }}
+        style={{ width: '100%' }}
       />
-    </span>
+    </StyledInputBox>
   );
 };
 

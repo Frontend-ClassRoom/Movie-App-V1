@@ -14,21 +14,19 @@ interface Breakpoints extends Array<string> {
   tablet: string;
 }
 
-interface ColorType {
-  lightest?: string;
-  lighter?: string;
-  light: string;
-  main?: string;
-  primary?: string;
-  dark: string;
-  darker?: string;
-  darkest?: string;
-}
-
 interface TextType {
   fontSize: string;
   fontWeight?: string;
-  lineHeight: string;
+}
+interface FormType {
+  bgColor: string;
+  borderColor: string;
+  fontColor: string;
+}
+
+interface ButtonSizeType {
+  fontSize: string;
+  padding: string;
 }
 
 declare module 'styled-components' {
@@ -50,8 +48,63 @@ declare module 'styled-components' {
         black: string;
         grey1: string;
         grey2: string;
+        grey2: string;
         white: string;
       };
+    };
+
+    baseFont: {
+      fontSize: string;
+      lineHeight: string;
+      fontWeight: string;
+    };
+
+    fontSizes: {
+      basic: string;
+      tiny: string;
+      small: string;
+      medium: string;
+      large: string;
+    };
+
+    heading: {
+      h1: TextType;
+      h2: TextType;
+      h3: TextType;
+      h4: TextType;
+      h5: TextType;
+      h6: TextType;
+    };
+
+    borderRadius: {
+      default: string;
+      round: string;
+      circle: string;
+    };
+
+    buttons: {
+      primary: FormType;
+      secondary: FormType;
+      link: FormType;
+    };
+
+    buttonSizes: {
+      basic: ButtonSizeType;
+      tiny: ButtonSizeType;
+      small: ButtonSizeType;
+      medium: ButtonSizeType;
+      large: ButtonSizeType;
+    };
+
+    inputs: {
+      bgColor: string;
+      borderColor: string;
+      fontColor: string;
+      padding: string;
+      focus: FormType;
+      checked: FormType;
+      disabled: FormType;
+      error: FormType;
     };
   }
 }

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { InputBox, Button } from 'component';
-import { StyledWrapper, LoginForm } from './Styled';
+import { StyledWrapper, LoginForm, StyledTitle, StyledText } from './Styled';
 
 const Login = () => {
   const history = useHistory();
@@ -47,29 +47,29 @@ const Login = () => {
 
   return (
     <StyledWrapper>
-      <h2>Welcome to MovieApp</h2>
-      <p>Your personal guide to the world of cinema</p>
+      <StyledTitle>Welcome to MovieApp</StyledTitle>
+      <StyledText>Your personal guide to the world of cinema</StyledText>
       <LoginForm>
         <InputBox
           value={userId}
-          type='text'
+          type="text"
           onChange={onChangeUserId}
-          placeholder='아이디 입력'
+          placeholder="아이디 입력"
           submit={setLoginUser}
+          className="login-form"
         />
         <InputBox
           value={userPassword}
-          type='password'
+          type="password"
           onChange={onChangeUserPassword}
-          placeholder='비밀번호 입력'
+          placeholder="비밀번호 입력"
           submit={setLoginUser}
+          className="login-form"
         />
-        <Button link label='Forgot password?' />
-        <Button
-          style={{ width: '100%' }}
-          onClick={setLoginUser}
-          label='로그인'
-        />
+        <p className="forget-pw">
+          <Button variant="link" label="Forgot password?" />
+        </p>
+        <Button size="large" style={{ width: '100%' }} onClick={setLoginUser} label="로그인" />
       </LoginForm>
     </StyledWrapper>
   );

@@ -1,15 +1,18 @@
-import styled, { css } from "styled-components";
-import { transformEm, transformPx } from "assets/styles";
-import { ButtonProps } from "component";
+import styled, { css } from 'styled-components';
+import { transformEm, transformPx } from 'assets/styles';
 
-export const StyledInput = styled.button<ButtonProps>`
+export const StyledInputBox = styled.div`
   position: relative;
-  background-color: #fff;
-  border: 1px solid #999;
-  border-radius: 50rem;
   color: #999;
-  font-size: 1.2rem;
+  font-size: ${(props) => props.theme.fontSizes.medium};
   line-height: 1;
+
+  input {
+    padding: ${(props) => props.theme.inputs.padding};
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 50rem;
+  }
 
   &::placeholder {
     color: #999;
