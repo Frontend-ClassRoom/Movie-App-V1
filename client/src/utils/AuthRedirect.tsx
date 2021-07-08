@@ -19,7 +19,7 @@ const AuthRedirect = ({ children }: AuthRedirectProps) => {
       dispatch(LogoutAction());
       history.push(`${AppRoutePath.LOGIN_PATH}`);
     }
-  }, []);
+  }, [isLoggedIn]);
 
   return <>{children}</>;
 };
