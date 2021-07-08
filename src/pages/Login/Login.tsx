@@ -1,16 +1,16 @@
-import { useCallback, useState } from "react";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
-import { InputBox, Button } from "component";
+import { useCallback, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { InputBox, Button } from 'component';
+import { StyledWrapper, LoginForm } from './Styled';
 
 const Login = () => {
   const history = useHistory();
-  const [userId, setUserId] = useState<string>("");
-  const [userPassword, setUserPassword] = useState<string>("");
+  const [userId, setUserId] = useState<string>('');
+  const [userPassword, setUserPassword] = useState<string>('');
 
   const clearInput = () => {
-    setUserId("");
-    setUserPassword("");
+    setUserId('');
+    setUserPassword('');
   };
 
   const onChangeUserId = useCallback(
@@ -31,7 +31,7 @@ const Login = () => {
     const userCheck = false; // 임시 로그인 성공 리턴값 이 값이 true면 path 이동
 
     if (userId.trim().length === 0 || userPassword.trim().length === 0) {
-      alert("입력 오류");
+      alert('입력 오류');
       return;
     }
 
@@ -40,55 +40,39 @@ const Login = () => {
      */
 
     if (userCheck) {
-      history.push("/");
+      history.push('/');
       clearInput();
     }
   }, [userId, userPassword]);
 
   return (
-    <StyledLogin>
+    <StyledWrapper>
       <h2>Welcome to MovieApp</h2>
       <p>Your personal guide to the world of cinema</p>
       <LoginForm>
         <InputBox
           value={userId}
-          type="text"
+          type='text'
           onChange={onChangeUserId}
-          placeholder="아이디 입력"
+          placeholder='아이디 입력'
           submit={setLoginUser}
         />
         <InputBox
           value={userPassword}
-          type="password"
+          type='password'
           onChange={onChangeUserPassword}
-          placeholder="비밀번호 입력"
+          placeholder='비밀번호 입력'
           submit={setLoginUser}
         />
-        <Button link label="Forgot password?" />
+        <Button link label='Forgot password?' />
         <Button
-          style={{ width: "100%" }}
+          style={{ width: '100%' }}
           onClick={setLoginUser}
-          label="로그인"
+          label='로그인'
         />
       </LoginForm>
-    </StyledLogin>
+    </StyledWrapper>
   );
 };
 
 export default Login;
-
-const StyledLogin = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const LoginForm = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  max-width: 200px;
-  width: 100%;
-`;

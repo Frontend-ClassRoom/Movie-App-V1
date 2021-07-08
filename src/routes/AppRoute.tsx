@@ -1,10 +1,10 @@
-import { FC } from "react";
-import { Switch, Route } from "react-router-dom";
-import styled from "styled-components";
-import { AppRoutePath } from "types/routes";
-import { Main } from "pages/Main";
-import { Detail } from "pages/Detail";
-import { Login } from "pages/Login";
+import { FC } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
+import { AppRoutePath } from 'types/routes';
+import { Main } from 'pages/Main';
+import { Detail } from 'pages/Detail';
+import { Login } from 'pages/Login';
 
 const AppRoute: FC = () => {
   return (
@@ -21,7 +21,8 @@ const AppRoute: FC = () => {
 export default AppRoute;
 
 const StyledLayout = styled.div`
-  width: 768px;
+  max-width: 768px;
   height: 100vh;
+  min-height: 500px;
   margin: 0 auto;
 `;

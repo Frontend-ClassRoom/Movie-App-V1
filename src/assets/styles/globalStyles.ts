@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   *:after {
     box-sizing: border-box;
   }
-  
+
   html {
     font-size: 16px;
     width: 100vw;
