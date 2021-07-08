@@ -6,6 +6,7 @@ import { Main } from 'pages/Main';
 import { Detail } from 'pages/Detail';
 import { Login } from 'pages/Login';
 import AuthRedirect from 'utils/AuthRedirect';
+import MoviePage from 'pages/Movie/Movie';
 
 const AppRoute: FC = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoute: FC = () => {
         <AuthRedirect>
           <Route exact path={AppRoutePath.MAIN_PATH} component={Main} />
           <Route path={AppRoutePath.DETAIL_PATH} component={Detail} />
+          <Route path={AppRoutePath.MOVIE_PATH} component={MoviePage} />
         </AuthRedirect>
       </Switch>
     </StyledLayout>
