@@ -9,13 +9,15 @@ import AuthRedirect from 'utils/AuthRedirect';
 
 const AppRoute: FC = () => {
   return (
-    <Switch>
-      <Route path={AppRoutePath.LOGIN_PATH} component={Login} />
-      <AuthRedirect>
-        <Route exact path={AppRoutePath.MAIN_PATH} component={Main} />
-        <Route path={AppRoutePath.DETAIL_PATH} component={Detail} />
-      </AuthRedirect>
-    </Switch>
+    <StyledLayout>
+      <Switch>
+        <Route path={AppRoutePath.LOGIN_PATH} component={Login} />
+        <AuthRedirect>
+          <Route exact path={AppRoutePath.MAIN_PATH} component={Main} />
+          <Route path={AppRoutePath.DETAIL_PATH} component={Detail} />
+        </AuthRedirect>
+      </Switch>
+    </StyledLayout>
   );
 };
 

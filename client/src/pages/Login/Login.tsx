@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
-import { TextInput } from 'component';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/reducer';
 import { LoginAction } from 'store/action';
+import { StyledWrapper, StyledTitle, StyledText, LoginForm } from './Styled';
+import { InputBox, Button } from 'component';
 
 const Login = () => {
   const history = useHistory();
@@ -64,13 +64,12 @@ const Login = () => {
     <StyledWrapper>
       <StyledTitle>Welcome to MovieApp</StyledTitle>
       <StyledText>Your personal guide to the world of cinema</StyledText>
-      <LoginForm>
+      <LoginForm onSubmit={setLoginUser}>
         <InputBox
           value={userId}
           type="text"
           onChange={onChangeUserId}
           placeholder="아이디 입력"
-          submit={setLoginUser}
           className="login-form"
         />
         <InputBox
@@ -78,13 +77,17 @@ const Login = () => {
           type="password"
           onChange={onChangeUserPassword}
           placeholder="비밀번호 입력"
-          submit={setLoginUser}
           className="login-form"
         />
         <p className="forget-pw">
           <Button variant="link" label="Forgot password?" />
         </p>
-        <Button size="large" style={{ width: '100%' }} onClick={setLoginUser} label="로그인" />
+        <Button
+          size="large"
+          style={{ width: '100%' }}
+          onClick={setLoginUser}
+          label="로그인"
+        />
       </LoginForm>
     </StyledWrapper>
   );

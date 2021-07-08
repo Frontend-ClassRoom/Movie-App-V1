@@ -12,7 +12,7 @@ const InputBox = ({
   type,
   onChange,
   placeholder = '입력해주세요.',
-}: TextInputProps) => {
+}: InputBoxProps) => {
   return (
     <span style={{ display: 'block', width: '100%', marginBottom: '10px' }}>
       <input

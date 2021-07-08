@@ -9,7 +9,7 @@ export const StyledWrapper = styled.div`
   height: 100vh;
 `;
 
-export const LoginForm = styled.div`
+export const LoginForm = styled.form`
   width: 100%;
 
   .login-form {
