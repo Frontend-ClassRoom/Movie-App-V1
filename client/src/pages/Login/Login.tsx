@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { TextInput } from 'component';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -9,8 +9,15 @@ import { LoginAction } from 'store/reducer/Auth';
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state: RootState) => state.AuthReducer);
   const [userId, setUserId] = useState<string>('');
   const [userPassword, setUserPassword] = useState<string>('');
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push('/');
+    }
+  }, [isLoggedIn]);
 
   const clearInput = () => {
     setUserId('');
