@@ -1,8 +1,8 @@
-import { getPostDetail } from "api/postApi";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import { Posts } from "types/posts";
+import { getPostDetail } from 'api/postApi';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { getEmptyPosts, Posts } from 'types/posts';
 
 /**
  * @description
@@ -26,6 +26,9 @@ const Detail = () => {
     if (id) {
       fetchPostDetail();
     }
+    return () => {
+      setDetail(getEmptyPosts());
+    };
   }, [id]);
 
   return (
@@ -37,7 +40,7 @@ const Detail = () => {
           <p>{detail?.body}</p>
         </>
       ) : (
-        "...loading"
+        '...loading'
       )}
     </StyledDetail>
   );

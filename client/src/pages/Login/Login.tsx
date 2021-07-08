@@ -38,44 +38,44 @@ const Login = () => {
     [userPassword]
   );
 
-  const setLoginUser = useCallback(() => {
-    if (userId.trim().length === 0 || userPassword.trim().length === 0) {
-      alert('입력 오류');
-      return;
-    }
+  const setLoginUser = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (userId.trim().length === 0 || userPassword.trim().length === 0) {
+        alert('입력 오류');
+        return;
+      }
+      /**
+       * Submit Logic
+       */
+      const loginUser = {
+        id: userId,
+        name: `${userId}#123`, // test
+      };
 
-    /**
-     * Submit Logic
-     */
-
-    const loginUser = {
-      id: userId,
-      name: `${userId}#123`, // test
-    };
-
-    dispatch(LoginAction(loginUser));
-    history.push('/');
-    clearInput();
-  }, [userId, userPassword]);
+      dispatch(LoginAction(loginUser));
+      history.push('/');
+      clearInput();
+    },
+    [userId, userPassword]
+  );
 
   return (
     <StyledLogin>
-      <LoginForm>
+      <LoginForm onSubmit={setLoginUser}>
         <TextInput
           value={userId}
           type="text"
           onChange={onChangeUserId}
           placeholder="아이디 입력"
-          submit={setLoginUser}
         />
         <TextInput
           value={userPassword}
           type="password"
           onChange={onChangeUserPassword}
           placeholder="비밀번호 입력"
-          submit={setLoginUser}
         />
-        <button style={{ width: '100%' }} onClick={setLoginUser}>
+        <button type="submit" style={{ width: '100%' }} onClick={setLoginUser}>
           로그인
         </button>
       </LoginForm>
@@ -93,7 +93,7 @@ const StyledLogin = styled.div`
   height: 100vh;
 `;
 
-const LoginForm = styled.div`
+const LoginForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
