@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/reducer';
-import { LoginAction } from 'store/reducer/Auth';
+import { LoginAction } from 'store/action';
 
 const Login = () => {
   const history = useHistory();

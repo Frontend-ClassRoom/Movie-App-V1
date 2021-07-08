@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/reducer';
 import { useHistory } from 'react-router-dom';
 import { AppRoutePath } from 'types/routes';
-import { LogoutAction } from 'store/reducer/Auth';
+import { LogoutAction } from 'store/action/Auth/authAction';
 
 interface AuthRedirectProps {
   children: React.ReactNode;
