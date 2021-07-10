@@ -95,7 +95,6 @@ const Main = () => {
 export default Main;
 
 const StyledMain = styled.div`
-  padding: 50px;
   h1 {
     margin-bottom: 20px;
   }
