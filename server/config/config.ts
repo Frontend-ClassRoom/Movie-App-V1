@@ -1,6 +1,6 @@
-import { dbConfig } from '../types/dbConfig';
+import { dbConfigModel } from '../types/dbModel';
 
-export const config: dbConfig = {
+export const config: dbConfigModel = {
   "development": {
     "username": "developer",
     "password": "password",
