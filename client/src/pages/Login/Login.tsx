@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
-import { TextInput } from 'component';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/reducer';
 import { LoginAction } from 'store/action';
+import { StyledWrapper, StyledTitle, StyledText, LoginForm } from './Styled';
+import { InputBox, Button } from 'component';
 
 const Login = () => {
   const history = useHistory();
@@ -61,43 +61,42 @@ const Login = () => {
   );
 
   return (
-    <StyledLogin>
+    <StyledWrapper>
+      <StyledTitle>Welcome to MovieApp</StyledTitle>
+      <StyledText>Your personal guide to the world of cinema</StyledText>
       <LoginForm onSubmit={setLoginUser}>
-        <TextInput
+        <InputBox
           value={userId}
           type="text"
           onChange={onChangeUserId}
           placeholder="아이디 입력"
+          className="login-form"
+          submit={setLoginUser}
         />
-        <TextInput
+        <InputBox
           value={userPassword}
           type="password"
           onChange={onChangeUserPassword}
           placeholder="비밀번호 입력"
+          className="login-form"
+          submit={setLoginUser}
         />
-        <button type="submit" style={{ width: '100%' }} onClick={setLoginUser}>
-          로그인
-        </button>
+        <p className="forget-pw">
+          <Button
+            variant="link"
+            onClick={(e) => e.preventDefault()}
+            label="Forgot password?"
+          />
+        </p>
+        <Button
+          size="large"
+          style={{ width: '100%' }}
+          onClick={setLoginUser}
+          label="로그인"
+        />
       </LoginForm>
-    </StyledLogin>
+    </StyledWrapper>
   );
 };
 
 export default Login;
-
-const StyledLogin = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-`;
-
-const LoginForm = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  max-width: 200px;
-  width: 100%;
-`;
