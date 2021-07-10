@@ -7,7 +7,7 @@ interface UserProps {
   logout: () => void;
 }
 
-const User = ({ user, logout }: UserProps) => {
+const Info = ({ user, logout }: UserProps) => {
   return (
     <StyledUser>
       <p>{`접속 유저 : ${user.user.id}`}</p>
@@ -22,7 +22,7 @@ const User = ({ user, logout }: UserProps) => {
   );
 };
 
-export default User;
+export default Info;
 
 const StyledUser = styled.div`
   display: inline-block;

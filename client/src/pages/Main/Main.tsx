@@ -6,8 +6,8 @@ import { useHistory } from 'react-router-dom';
 import useAsync from 'hook/useAsync';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/reducer';
-import User from 'component/User/User';
 import { LogoutAction } from 'store/action';
+import Info from 'component/User/Info';
 /**
  * @description
  * Page의 Layout은 공통으로 뽑아서 사용? 폴더 내부에서 선언?
@@ -50,7 +50,7 @@ const Main = () => {
 
   const handleDetailPost = (postId: number) => {
     if (!postId) return;
-    history.push(`/${postId}`);
+    history.push(`/post/${postId}`);
   };
 
   const handleLogout = () => {
@@ -62,7 +62,7 @@ const Main = () => {
   return (
     <StyledMain>
       {/* <button onClick={execute}>click</button> */}
-      <User user={login} logout={handleLogout} />
+      <Info user={login} logout={handleLogout} />
       {posts && (
         <>
           <h1>{`posts length : ${posts.length}`}</h1>
