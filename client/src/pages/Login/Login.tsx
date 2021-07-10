@@ -71,6 +71,7 @@ const Login = () => {
           onChange={onChangeUserId}
           placeholder="아이디 입력"
           className="login-form"
+          submit={setLoginUser}
         />
         <InputBox
           value={userPassword}
@@ -78,9 +79,14 @@ const Login = () => {
           onChange={onChangeUserPassword}
           placeholder="비밀번호 입력"
           className="login-form"
+          submit={setLoginUser}
         />
         <p className="forget-pw">
-          <Button variant="link" label="Forgot password?" />
+          <Button
+            variant="link"
+            onClick={(e) => e.preventDefault()}
+            label="Forgot password?"
+          />
         </p>
         <Button
           size="large"
