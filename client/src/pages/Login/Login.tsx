@@ -89,6 +89,7 @@ const Login = () => {
           />
         </p>
         <Button
+          variant="primary"
           size="large"
           style={{ width: '100%' }}
           onClick={setLoginUser}

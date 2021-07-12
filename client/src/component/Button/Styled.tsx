@@ -31,7 +31,7 @@ export const StyledButton = styled.button<ButtonProps>`
 
 const StyledDefaultButton = css<ButtonProps>`
   background-color: ${(props) => props.theme.buttons.default.bgColor};
-  border-color: 0;
+  border: 0;
   color: ${(props) => props.theme.buttons.default.fontColor};
   padding: 0;
 `;

@@ -10,6 +10,14 @@ export const StyledHeaderContents = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  button {
+    padding: 0.5rem;
+
+    svg {
+      vertical-align: middle;
+    }
+  }
 `;
 
 export const StyledLogo = styled.h1``;
