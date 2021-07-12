@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/reducer';
 import { LogoutAction } from 'store/action';
 import Info from 'component/User/Info';
+import { StyledList, StyledListItem, StyledPhotoCard } from './Styled';
 /**
  * @description
  * Page의 Layout은 공통으로 뽑아서 사용? 폴더 내부에서 선언?
@@ -58,26 +59,29 @@ const Main = () => {
       {/* <button onClick={execute}>click</button> */}
       {posts && (
         <>
-          <h1>{`posts length : ${posts.length}`}</h1>
+          <p>{`posts length : ${posts.length}`}</p>
           {posts.length > 0 && (
-            <ul>
-              {posts.map(({ id, userId, title, body }, index) => (
-                <li key={index} onClick={() => handleDetailPost(id)}>
-                  <p>
-                    <strong>UserId</strong>
-                    <span>{userId}</span>
-                  </p>
-                  <p>
-                    <strong>title</strong>
-                    <span>{title}</span>
-                  </p>
-                  <p>
-                    <strong>body</strong>
-                    <span>{body}</span>
-                  </p>
-                </li>
+            <StyledList>
+              {posts.map(({ id, userId, title }, index) => (
+                <StyledListItem
+                  key={index}
+                  onClick={() => handleDetailPost(id)}
+                >
+                  <StyledPhotoCard>
+                    <div className="poster">
+                      <img
+                        src="https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20190327_89%2F15536523166004pQlw_JPEG%2Fmovie_image.jpg"
+                        alt="movie poster"
+                      />
+                    </div>
+                    <div className="info">
+                      <strong>{title}</strong>
+                      <span>{userId}</span>
+                    </div>
+                  </StyledPhotoCard>
+                </StyledListItem>
               ))}
-            </ul>
+            </StyledList>
           )}
         </>
       )}
@@ -88,10 +92,10 @@ const Main = () => {
 export default Main;
 
 const StyledMain = styled.div`
-  h1 {
+  p {
     margin-bottom: 20px;
   }
-  ul li {
+  /* ul li {
     padding: 10px;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -110,5 +114,5 @@ const StyledMain = styled.div`
     &:not(:first-child) {
       margin-top: 20px;
     }
-  }
+  } */
 `;
