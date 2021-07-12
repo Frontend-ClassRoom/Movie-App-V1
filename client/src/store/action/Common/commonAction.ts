@@ -1,11 +1,11 @@
 import {
   SET_CLOSE_SIDEBAR,
-  SET_SIDEBAR,
+  SET_TOGGLE_SIDEBAR,
 } from 'store/reducer/Common/commonReducer';
 
 export const SidebarActionToggle = () => {
   return {
-    type: SET_SIDEBAR,
+    type: SET_TOGGLE_SIDEBAR,
   };
 };
 

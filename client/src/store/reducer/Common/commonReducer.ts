@@ -1,6 +1,6 @@
 import { SidebarActionToggle, SidebarCloseAction } from 'store/action';
 
-export const SET_SIDEBAR = 'common/SET_SIDEBAR' as const;
+export const SET_TOGGLE_SIDEBAR = 'common/SET_TOGGLE_SIDEBAR' as const;
 export const SET_CLOSE_SIDEBAR = 'common/SET_CLOSE_SIDEBAR' as const;
 
 export interface CommonState {
@@ -17,7 +17,7 @@ const initialState: CommonState = {
 
 const commonReducer = (state = initialState, action: CommonActionType) => {
   switch (action.type) {
-    case 'common/SET_SIDEBAR':
+    case 'common/SET_TOGGLE_SIDEBAR':
       return {
         sidebar: !state.sidebar,
       };
