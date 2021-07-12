@@ -14,7 +14,7 @@ export const useClickOutsideListenerRef = (
 
   const clickListener = useCallback(
     (e: MouseEvent) => {
-      if (!(ref.current! as any).contains(e.target) && isOpen) {
+      if (!(ref.current! as any)?.contains(e.target) && isOpen) {
         onClose?.();
       }
     },
