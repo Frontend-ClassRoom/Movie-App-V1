@@ -53,12 +53,6 @@ const Main = () => {
     history.push(`/post/${postId}`);
   };
 
-  const handleLogout = () => {
-    if (login.isLoggedIn) {
-      dispatch(LogoutAction());
-    }
-  };
-
   return (
     <StyledMain>
       {/* <button onClick={execute}>click</button> */}
