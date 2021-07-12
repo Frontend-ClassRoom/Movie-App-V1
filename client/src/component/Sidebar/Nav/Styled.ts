@@ -3,7 +3,7 @@ import { transformEm } from 'assets/styles';
 
 export const StyledNav = styled.div<{ isOpen: boolean }>`
   // isOpen => Sidebar Open
-  z-index: 10;
+  z-index: 20;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -33,6 +33,7 @@ export const StyledNavContents = styled.nav`
 export const StyledNavList = styled.ul``;
 
 export const StyledDimm = styled.div<{ isOpen: boolean }>`
+  z-index: 10;
   position: absolute;
   left: 0;
   top: 0;
