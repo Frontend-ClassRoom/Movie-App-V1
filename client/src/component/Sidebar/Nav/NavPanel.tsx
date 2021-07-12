@@ -12,7 +12,7 @@ import { FiLogOut } from 'react-icons/fi';
 import { BiHome, BiMovie } from 'react-icons/bi';
 import { TiBusinessCard } from 'react-icons/ti';
 import { AiOutlineSetting } from 'react-icons/ai';
-import { SidebarCloseAction } from 'store/action';
+import { LogoutAction, SidebarCloseAction } from 'store/action';
 import { useClickOutsideListenerRef } from 'hook/useClickOutside';
 import NavButton from '../NavButton/Button';
 
@@ -34,6 +34,11 @@ const Nav = () => {
     dispatch(SidebarCloseAction());
   };
 
+  const handleLogout = () => {
+    dispatch(LogoutAction());
+    handleCloseSidebar();
+  };
+
   // esc키, 외부 클릭시 sidebar close
   const sidebarRef = useClickOutsideListenerRef(handleCloseSidebar, sidebar);
 
@@ -46,7 +51,7 @@ const Nav = () => {
             <NavButton key={index} path={path} label={label} icon={icon} />
           ))}
         </StyledNavList>
-        <Button label="Logout">
+        <Button label="Logout" onClick={handleLogout}>
           <FiLogOut />
         </Button>
       </StyledNavContents>
