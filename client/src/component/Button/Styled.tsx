@@ -5,11 +5,12 @@ import { ButtonProps } from 'component';
 export const StyledButton = styled.button<ButtonProps>`
   position: relative;
   display: inline-block;
-  padding: ${(transformEm(5, +transformPx(1.2)), transformEm(10, +transformPx(1.2)))};
-  background-color: ${(props) => props.theme.colors.primary};
-  border: 1px solid ${(props) => props.theme.colors.primary};
+  padding: ${(transformEm(5, +transformPx(1.2)),
+  transformEm(10, +transformPx(1.2)))};
+  background-color: ${(props) => props.theme.colors.greys.grey5};
+  border: 1px solid ${(props) => props.theme.colors.greys.grey5};
   border-radius: ${(props) => props.theme.borderRadius.circle};
-  color: ${(props) => props.theme.colors.greys.white};
+  color: ${(props) => props.theme.colors.greys.grey2};
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -22,9 +23,17 @@ export const StyledButton = styled.button<ButtonProps>`
   ${(props) => props.size === 'large' && StyledLargeButton}
 
   /* variant styles */
+  ${(props) => props.variant === 'default' && StyledDefaultButton}
   ${(props) => props.variant === 'primary' && StyledPrimaryButton}
   ${(props) => props.variant === 'secondary' && StyledSecondaryButton}
   ${(props) => props.variant === 'link' && StyledLinkButton}
+`;
+
+const StyledDefaultButton = css<ButtonProps>`
+  background-color: ${(props) => props.theme.buttons.default.bgColor};
+  border-color: 0;
+  color: ${(props) => props.theme.buttons.default.fontColor};
+  padding: 0;
 `;
 
 const StyledPrimaryButton = css<ButtonProps>`
