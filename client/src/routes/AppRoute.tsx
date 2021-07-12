@@ -13,6 +13,7 @@ import Header from 'component/Header/Header';
 import AuthRedirect from 'utils/AuthRedirect';
 
 const AppRoute: FC = () => {
+  const { isLoggedIn } = useSelector((state: RootState) => state.AuthReducer);
   const { sidebar } = useSelector((state: RootState) => state.CommonReducer);
   const layoutRef = useRef<HTMLDivElement>(null);
 
@@ -28,8 +29,12 @@ const AppRoute: FC = () => {
 
   return (
     <StyledLayout ref={layoutRef}>
-      <Nav />
-      <Header />
+      {isLoggedIn && (
+        <>
+          <Nav />
+          <Header />
+        </>
+      )}
       <Switch>
         <Route path={AppRoutePath.LOGIN_PATH} component={Login} />
         <AuthRedirect>
