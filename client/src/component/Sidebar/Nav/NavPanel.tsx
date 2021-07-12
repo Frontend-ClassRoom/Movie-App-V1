@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  StyledDimm,
   StyledNav,
   StyledNavContents,
   StyledNavHeader,
@@ -43,19 +44,22 @@ const Nav = () => {
   const sidebarRef = useClickOutsideListenerRef(handleCloseSidebar, sidebar);
 
   return (
-    <StyledNav isOpen={sidebar} ref={sidebarRef}>
-      <StyledNavHeader>{`${id}님`}</StyledNavHeader>
-      <StyledNavContents>
-        <StyledNavList>
-          {NavItem.map(({ label, path, icon }, index) => (
-            <NavButton key={index} path={path} label={label} icon={icon} />
-          ))}
-        </StyledNavList>
-        <Button label="Logout" onClick={handleLogout}>
-          <FiLogOut />
-        </Button>
-      </StyledNavContents>
-    </StyledNav>
+    <>
+      <StyledNav isOpen={sidebar} ref={sidebarRef}>
+        <StyledNavHeader>{`${id}님`}</StyledNavHeader>
+        <StyledNavContents>
+          <StyledNavList>
+            {NavItem.map(({ label, path, icon }, index) => (
+              <NavButton key={index} path={path} label={label} icon={icon} />
+            ))}
+          </StyledNavList>
+          <Button label="Logout" onClick={handleLogout}>
+            <FiLogOut />
+          </Button>
+        </StyledNavContents>
+      </StyledNav>
+      <StyledDimm isOpen={sidebar} />
+    </>
   );
 };
 
