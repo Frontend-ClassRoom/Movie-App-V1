@@ -21,15 +21,15 @@ const Header = () => {
   return (
     <StyledHeader>
       <StyledHeaderContents>
-        <Button onClick={handleToggleSidebar}>
+        <Button onClick={handleToggleSidebar} variant="default">
           <BiMenu size={20} />
         </Button>
         <StyledLogo>MovieApp</StyledLogo>
         <StyledBtnSet>
-          <Button>
+          <Button variant="default">
             <AiOutlineSearch size={20} />
           </Button>
-          <Button>
+          <Button variant="default">
             <AiOutlineUser size={20} />
           </Button>
         </StyledBtnSet>
