@@ -1,16 +1,35 @@
-import { FC } from 'react';
+import { FC, useRef, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { AppRoutePath } from 'types/routes';
+import { RootState } from 'store/reducer';
+import { useSelector } from 'react-redux';
 import { Main } from 'pages/Main';
 import { Detail } from 'pages/Detail';
 import { Login } from 'pages/Login';
-import AuthRedirect from 'utils/AuthRedirect';
 import MoviePage from 'pages/Movie/Movie';
+import Nav from 'component/Sidebar/Nav/NavPanel';
+import Header from 'component/Header/Header';
+import AuthRedirect from 'utils/AuthRedirect';
 
 const AppRoute: FC = () => {
+  const { sidebar } = useSelector((state: RootState) => state.CommonReducer);
+  const layoutRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (sidebar && layoutRef && layoutRef.current) {
+      layoutRef.current.style.overflowY = 'hidden';
+    } else if (!sidebar && layoutRef && layoutRef.current) {
+      layoutRef.current.style.overflowY = 'auto';
+    } else {
+      return;
+    }
+  }, [sidebar]);
+
   return (
-    <StyledLayout>
+    <StyledLayout ref={layoutRef}>
+      <Nav />
+      <Header />
       <Switch>
         <Route path={AppRoutePath.LOGIN_PATH} component={Login} />
         <AuthRedirect>
@@ -26,6 +45,8 @@ const AppRoute: FC = () => {
 export default AppRoute;
 
 const StyledLayout = styled.div`
+  overflow-x: hidden;
+  position: relative;
   margin: 0 auto;
   padding: 0 1em;
   max-width: 768px;

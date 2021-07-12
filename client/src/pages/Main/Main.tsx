@@ -62,7 +62,6 @@ const Main = () => {
   return (
     <StyledMain>
       {/* <button onClick={execute}>click</button> */}
-      <Info user={login} logout={handleLogout} />
       {posts && (
         <>
           <h1>{`posts length : ${posts.length}`}</h1>
@@ -95,7 +94,6 @@ const Main = () => {
 export default Main;
 
 const StyledMain = styled.div`
-  padding: 50px;
   h1 {
     margin-bottom: 20px;
   }

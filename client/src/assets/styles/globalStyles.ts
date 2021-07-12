@@ -8,7 +8,10 @@ export const GlobalStyle = createGlobalStyle`
   *:after {
     box-sizing: border-box;
   }
-
+  a {
+    text-decoration: none;
+    color: #000;
+  }
   html {
     font-size: 16px;
     width: 100vw;
