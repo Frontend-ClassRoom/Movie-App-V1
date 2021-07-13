@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   StyledDimm,
   StyledNav,
@@ -42,6 +42,16 @@ const Nav = () => {
 
   // esc키, 외부 클릭시 sidebar close
   const sidebarRef = useClickOutsideListenerRef(handleCloseSidebar, sidebar);
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    if (!body) return;
+    if (sidebar) {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = 'auto';
+    }
+  }, [sidebar]);
 
   return (
     <>

@@ -6,7 +6,7 @@ export const StyledNav = styled.div<{ isOpen: boolean }>`
   z-index: 20;
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   left: ${({ isOpen }) => (isOpen ? 0 : '-100%')};
   top: 0;
   padding: ${transformEm(32)} ${transformEm(16)};
@@ -34,7 +34,7 @@ export const StyledNavList = styled.ul``;
 
 export const StyledDimm = styled.div<{ isOpen: boolean }>`
   z-index: 10;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   right: 0;

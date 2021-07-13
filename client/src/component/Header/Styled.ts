@@ -1,17 +1,15 @@
 import styled from 'styled-components';
 import { transformEm } from 'assets/styles';
 
-export const StyledHeader = styled.div<{ isFixed: boolean }>`
+export const StyledHeader = styled.div`
   position: fixed;
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  max-width: 768px;
   width: 100%;
   padding: ${transformEm(20)} ${transformEm(0)};
-  background: ${({ isFixed }) => (isFixed ? '#fff' : 'transparent')};
-  box-shadow: ${({ isFixed }) =>
-    isFixed ? 'rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;' : 'none'};
+  background: #fff;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
   transition: box-shadow 0.5s ease;
 `;
 
