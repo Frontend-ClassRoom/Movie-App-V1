@@ -1,16 +1,16 @@
 import { FC } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import styled from 'styled-components';
 import { AppRoutePath } from 'types/routes';
 import { Main } from 'pages/Main';
 import { Detail } from 'pages/Detail';
 import { Login } from 'pages/Login';
-import AuthRedirect from 'utils/AuthRedirect';
 import MoviePage from 'pages/Movie/Movie';
+import AuthRedirect from 'utils/AuthRedirect';
+import Layout from 'assets/styles/Layout';
 
 const AppRoute: FC = () => {
   return (
-    <StyledLayout>
+    <Layout>
       <Switch>
         <Route path={AppRoutePath.LOGIN_PATH} component={Login} />
         <AuthRedirect>
@@ -19,16 +19,8 @@ const AppRoute: FC = () => {
           <Route path={AppRoutePath.MOVIE_PATH} component={MoviePage} />
         </AuthRedirect>
       </Switch>
-    </StyledLayout>
+    </Layout>
   );
 };
 
 export default AppRoute;
-
-const StyledLayout = styled.div`
-  margin: 0 auto;
-  padding: 0 1em;
-  max-width: 768px;
-  height: 100vh;
-  min-height: 500px;
-`;

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './Auth/authReducer';
+import commonReducer from './Common/commonReducer';
 import postsReducer from './Posts/postsReducer';
 
 const persistConfig = {
@@ -12,6 +13,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   AuthReducer: authReducer,
+  CommonReducer: commonReducer,
   PostReducer: postsReducer, // 임시 store, 추후 backend API로 CRUD
 });
 
