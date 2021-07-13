@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
+  StyledDimm,
   StyledNav,
   StyledNavContents,
   StyledNavHeader,
@@ -42,20 +43,40 @@ const Nav = () => {
   // esc키, 외부 클릭시 sidebar close
   const sidebarRef = useClickOutsideListenerRef(handleCloseSidebar, sidebar);
 
+  useEffect(() => {
+    const body = document.querySelector('body');
+    const root = document.querySelector('#root');
+
+    if (!body) return;
+    if (!root) return;
+    if (sidebar) {
+      body.classList.add('side-open');
+      if (root.clientHeight > body.clientHeight) {
+        body.classList.add('scroll');
+      }
+    } else {
+      body.classList.remove('side-open');
+      body.classList.remove('scroll');
+    }
+  }, [sidebar]);
+
   return (
-    <StyledNav isOpen={sidebar} ref={sidebarRef}>
-      <StyledNavHeader>{`${id}님`}</StyledNavHeader>
-      <StyledNavContents>
-        <StyledNavList>
-          {NavItem.map(({ label, path, icon }, index) => (
-            <NavButton key={index} path={path} label={label} icon={icon} />
-          ))}
-        </StyledNavList>
-        <Button label="Logout" onClick={handleLogout}>
-          <FiLogOut />
-        </Button>
-      </StyledNavContents>
-    </StyledNav>
+    <>
+      <StyledNav isOpen={sidebar} ref={sidebarRef}>
+        <StyledNavHeader>{`${id}님`}</StyledNavHeader>
+        <StyledNavContents>
+          <StyledNavList>
+            {NavItem.map(({ label, path, icon }, index) => (
+              <NavButton key={index} path={path} label={label} icon={icon} />
+            ))}
+          </StyledNavList>
+          <Button label="Logout" onClick={handleLogout}>
+            <FiLogOut />
+          </Button>
+        </StyledNavContents>
+      </StyledNav>
+      <StyledDimm isOpen={sidebar} />
+    </>
   );
 };
 
