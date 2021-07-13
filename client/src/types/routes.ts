@@ -3,4 +3,5 @@ export enum AppRoutePath {
   DETAIL_PATH = '/post/:id',
   LOGIN_PATH = '/login',
   MOVIE_PATH = '/movie',
+  SETTING_PATH = '/setting',
 }
