@@ -45,11 +45,18 @@ const Nav = () => {
 
   useEffect(() => {
     const body = document.querySelector('body');
+    const root = document.querySelector('#root');
+
     if (!body) return;
+    if (!root) return;
     if (sidebar) {
-      body.style.overflow = 'hidden';
+      body.classList.add('side-open');
+      if (root.clientHeight > body.clientHeight) {
+        body.classList.add('scroll');
+      }
     } else {
-      body.style.overflow = 'auto';
+      body.classList.remove('side-open');
+      body.classList.remove('scroll');
     }
   }, [sidebar]);
 

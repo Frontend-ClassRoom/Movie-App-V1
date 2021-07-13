@@ -32,6 +32,4 @@ const StyledLayout = styled.div`
   position: relative;
   margin: 0 auto;
   padding: ${transformEm(70)} ${transformEm(16)};
-  height: 100vh;
-  min-height: 500px;
 `;

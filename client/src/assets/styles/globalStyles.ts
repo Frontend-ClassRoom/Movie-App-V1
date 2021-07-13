@@ -24,6 +24,19 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Noto Sans KR", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    &.side-open {
+      overflow-y: hidden;
+    }
+
+    &.scroll {
+      overflow-y: scroll;
+
+      #root {
+        overflow: hidden;
+        height: 100%;
+      }
+    }
   }
   h1,
   h2,
