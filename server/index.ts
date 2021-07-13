@@ -1,3 +1,4 @@
+import { NextFunction } from 'express';
 import App from './app';
 import sequelize from './models';
 import User from './models/user'
@@ -13,6 +14,12 @@ sequelize.sync({ force: false })
     .catch((err) => {
         console.log(err);
     });
+
+
+app.use((err: any, req: any, res: any, next: any) => {
+    console.log(err);
+    res.status(err.status || 500);
+});   
 
 app.listen(3001, () => {
     console.log('3001번 포트 연결 성공!');
