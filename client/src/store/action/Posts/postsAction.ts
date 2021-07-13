@@ -5,6 +5,8 @@ import {
   UPDATE_POST,
 } from 'store/reducer/Posts';
 
+export type UpdatePost = Pick<Post, 'contents' | 'contentImage' | 'postId'>;
+
 export const CreatePostAction = (post: Post) => {
   return {
     type: CREATE_POST,
@@ -19,7 +21,7 @@ export const DeletePostAction = (postId: number) => {
   };
 };
 
-export const UpdatePostAction = (post: Post) => {
+export const UpdatePostAction = (post: UpdatePost) => {
   return {
     type: UPDATE_POST,
     post,

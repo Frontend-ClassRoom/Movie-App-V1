@@ -15,7 +15,8 @@ export interface PostState {
 export interface Post {
   userId: string;
   postId: number;
-  isLike: number;
+  isLike: boolean;
+  likeCount: number;
   contents: string;
   contentImage: string;
 }
