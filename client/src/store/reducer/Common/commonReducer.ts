@@ -26,22 +26,29 @@ const initialState: CommonState = {
   fixedHeader: false,
 };
 
-const commonReducer = (state = initialState, action: CommonActionType) => {
+const commonReducer = (
+  state = initialState,
+  action: CommonActionType | any
+) => {
   switch (action.type) {
     case 'common/SET_TOGGLE_SIDEBAR':
       return {
+        ...state,
         sidebar: !state.sidebar,
       };
     case 'common/SET_CLOSE_SIDEBAR':
       return {
+        ...state,
         sidebar: false,
       };
     case 'common/SET_FIXED_HEADER':
       return {
+        ...state,
         fixedHeader: true,
       };
     case 'common/SET_CLOSE_FIXED_HEADER':
       return {
+        ...state,
         fixedHeader: false,
       };
     default:

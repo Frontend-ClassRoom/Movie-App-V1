@@ -63,8 +63,7 @@ const StyledLayout = styled.div<{ isFixed: boolean }>`
   overflow-x: hidden;
   position: relative;
   margin: 0 auto;
-  padding: ${({ isFixed }) =>
-    isFixed ? `${transformEm(70)} ${transformEm(16)}` : '0 1em'};
+  padding: ${transformEm(70)} ${transformEm(16)};
   max-width: 768px;
   height: 100vh;
   min-height: 500px;
