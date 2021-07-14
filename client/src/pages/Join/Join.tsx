@@ -10,7 +10,10 @@ const Join = () => {
     name: '',
     password: '',
   });
-  const { execute, data } = useAsync(() => createUserAccount(account), false);
+  const { execute: submit, data } = useAsync(
+    () => createUserAccount(account),
+    false
+  );
 
   const onChangeAccount = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +37,7 @@ const Join = () => {
 
   const onSubmit = useCallback(() => {
     if (validation<Account>(account)) {
-      execute();
+      submit();
     }
   }, [account]);
 
@@ -46,21 +49,21 @@ const Join = () => {
         name="id"
         type="text"
         onChange={onChangeAccount}
-        submit={(e) => console.log(e)}
+        submit={onSubmit}
       />
       <InputBox
         value={account.name}
         name="name"
         type="text"
         onChange={onChangeAccount}
-        submit={(e) => console.log(e)}
+        submit={onSubmit}
       />
       <InputBox
         value={account.password}
         name="password"
         type="password"
         onChange={onChangeAccount}
-        submit={(e) => console.log(e)}
+        submit={onSubmit}
       />
     </div>
   );
