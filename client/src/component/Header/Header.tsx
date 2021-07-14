@@ -13,7 +13,6 @@ import { SidebarActionToggle } from 'store/action';
 
 const Header = () => {
   const dispatch = useDispatch();
-
   const handleToggleSidebar = () => {
     dispatch(SidebarActionToggle());
   };

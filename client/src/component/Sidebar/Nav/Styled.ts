@@ -3,10 +3,10 @@ import { transformEm } from 'assets/styles';
 
 export const StyledNav = styled.div<{ isOpen: boolean }>`
   // isOpen => Sidebar Open
-  z-index: 10;
+  z-index: 20;
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   left: ${({ isOpen }) => (isOpen ? 0 : '-100%')};
   top: 0;
   padding: ${transformEm(32)} ${transformEm(16)};
@@ -31,3 +31,16 @@ export const StyledNavContents = styled.nav`
 `;
 
 export const StyledNavList = styled.ul``;
+
+export const StyledDimm = styled.div<{ isOpen: boolean }>`
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
+  transition: opacity 0.5s 0.3s ease;
+`;
