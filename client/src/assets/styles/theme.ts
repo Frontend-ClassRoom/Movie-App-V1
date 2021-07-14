@@ -95,6 +95,11 @@ const borderRadius = {
 };
 
 const buttons = {
+  default: {
+    bgColor: 'transparent',
+    borderColor: 'transparent',
+    fontColor: colors.greys.grey1,
+  },
   primary: {
     bgColor: colors.primary,
     borderColor: colors.primary,

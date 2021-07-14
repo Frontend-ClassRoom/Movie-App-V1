@@ -48,7 +48,10 @@ declare module 'styled-components' {
         black: string;
         grey1: string;
         grey2: string;
-        grey2: string;
+        grey3: string;
+        grey4: string;
+        grey5: string;
+        grey6: string;
         white: string;
       };
     };
@@ -83,6 +86,7 @@ declare module 'styled-components' {
     };
 
     buttons: {
+      default: FormType;
       primary: FormType;
       secondary: FormType;
       link: FormType;
