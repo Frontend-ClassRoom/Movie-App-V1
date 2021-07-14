@@ -1,15 +1,27 @@
-import { ChangeEvent, useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { createUserAccount } from 'api/userApi';
 import { InputBox } from 'component';
 import { Account } from 'types/user';
 import useAsync from 'hook/useAsync';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/reducer';
 
 const Join = () => {
+  const history = useHistory();
+  const { isLoggedIn } = useSelector((state: RootState) => state.AuthReducer);
   const [account, setAccount] = useState<Account>({
     id: '',
     name: '',
     password: '',
   });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push('/');
+    }
+  }, [isLoggedIn]);
+
   const { execute: submit, data } = useAsync(
     () => createUserAccount(account),
     false
