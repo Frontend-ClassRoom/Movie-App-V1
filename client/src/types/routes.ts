@@ -1,6 +1,7 @@
 export enum AppRoutePath {
   MAIN_PATH = '/',
   DETAIL_PATH = '/post/:id',
-  LOGIN_PATH = '/login',
   MOVIE_PATH = '/movie',
+  LOGIN_PATH = '/login',
+  JOIN_PATH = '/join',
 }
