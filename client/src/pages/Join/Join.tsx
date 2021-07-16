@@ -24,10 +24,6 @@ const Join = () => {
     if (isLoggedIn) {
       history.push('/');
     }
-
-    return () => {
-      setAccount(clearInput());
-    };
   }, [isLoggedIn]);
 
   const clearInput = () => {
@@ -80,7 +76,7 @@ const Join = () => {
   return (
     <StyledWrapper>
       <StyledTitle>SIGN UP</StyledTitle>
-      <JoinForm onSubmit={onSubmit}>
+      <JoinForm onSubmit={onSubmit} method="post">
         <InputBox
           className="join-form"
           value={account.id}

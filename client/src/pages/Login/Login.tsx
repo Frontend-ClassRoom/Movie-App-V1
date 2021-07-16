@@ -66,7 +66,7 @@ const Login = () => {
     <StyledWrapper>
       <StyledTitle>Welcome to MovieApp</StyledTitle>
       <StyledText>Your personal guide to the world of cinema</StyledText>
-      <LoginForm onSubmit={setLoginUser}>
+      <LoginForm onSubmit={setLoginUser} method="post">
         <InputBox
           value={userId}
           type="text"
