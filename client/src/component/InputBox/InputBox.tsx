@@ -9,6 +9,7 @@ interface InputBoxProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   submit: (e: any) => void;
   className?: string;
+  autoComplete?: string;
 }
 
 const InputBox = ({
@@ -19,6 +20,7 @@ const InputBox = ({
   className,
   submit,
   name,
+  autoComplete = 'off',
 }: InputBoxProps) => {
   return (
     <StyledInputBox className={className}>
@@ -31,6 +33,7 @@ const InputBox = ({
         placeholder={placeholder}
         title={placeholder}
         style={{ width: '100%' }}
+        autoComplete={autoComplete}
       />
     </StyledInputBox>
   );
