@@ -4,6 +4,6 @@ export function validation<T>(obj: T) {
     .map((value) => {
       return value.trim().length;
     })
-    .find((value: number) => value === 0);
-  return checkValidation === 0 ? false : true;
+    .filter((value) => value === 0).length;
+  return checkValidation > 0 ? false : true;
 }
