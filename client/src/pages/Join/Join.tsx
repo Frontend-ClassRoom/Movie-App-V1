@@ -24,7 +24,20 @@ const Join = () => {
     if (isLoggedIn) {
       history.push('/');
     }
+
+    return () => {
+      setAccount(clearInput());
+    };
   }, [isLoggedIn]);
+
+  const clearInput = () => {
+    return {
+      id: '',
+      name: '',
+      password: '',
+      confirmPassword: '',
+    };
+  };
 
   const { execute: submit, data } = useAsync(
     () => createUserAccount(account),
@@ -55,6 +68,7 @@ const Join = () => {
       if (validation<Account>(account)) {
         alert('아직 백엔드 로그인 로직이 머지전이라 에러가 나는게 정상입니다.');
         submit();
+        setAccount(clearInput());
         /**
          * submit 후에 return data를 확인해서 history.push('/login') 하거나 로직 협의
          */
