@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { StyledInputBox } from './Styled';
 
 interface InputBoxProps {
   value: string | number;
   type: string;
+  name?: string;
   placeholder?: string;
-  onChange: (userValue: string) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   submit: (e: any) => void;
   className?: string;
+  autoComplete?: string;
 }
 
 const InputBox = ({
@@ -17,17 +19,21 @@ const InputBox = ({
   placeholder = '입력해주세요.',
   className,
   submit,
+  name,
+  autoComplete = 'off',
 }: InputBoxProps) => {
   return (
     <StyledInputBox className={className}>
       <input
         type={type}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        name={name}
+        onChange={(e) => onChange(e)}
         onKeyPress={(e) => e.key === 'Enter' && submit(e)}
         placeholder={placeholder}
         title={placeholder}
         style={{ width: '100%' }}
+        autoComplete={autoComplete}
       />
     </StyledInputBox>
   );
