@@ -5,6 +5,8 @@ const breakpoints = {
   mobileM: '375px',
   mobileL: '425px',
   tablet: '768px',
+  desktop: '1024px',
+  wide: '1280px',
 };
 
 const mediaQueries = {
@@ -13,12 +15,16 @@ const mediaQueries = {
     mobileM: `@media screen and (min-width: ${breakpoints.mobileM})`,
     mobileL: `@media screen and (min-width: ${breakpoints.mobileL})`,
     tablet: `@media screen and (min-width: ${breakpoints.tablet})`,
+    desktop: `@media screen and (min-width: ${breakpoints.desktop})`,
+    wide: `@media screen and (min-width: ${breakpoints.wide})`,
   },
   max: {
     mobileS: `@media screen and (max-width: ${breakpoints.mobileS})`,
     mobileM: `@media screen and (max-width: ${breakpoints.mobileM})`,
     mobileL: `@media screen and (max-width: ${breakpoints.mobileL})`,
     tablet: `@media screen and (max-width: ${breakpoints.tablet})`,
+    desktop: `@media screen and (max-width: ${breakpoints.desktop})`,
+    wide: `@media screen and (max-width: ${breakpoints.wide})`,
   },
 };
 

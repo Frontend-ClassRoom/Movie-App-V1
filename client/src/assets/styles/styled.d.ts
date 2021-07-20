@@ -5,6 +5,8 @@ interface BreakpointSizes {
   mobileM: string;
   mobileL: string;
   tablet: string;
+  desktop: string;
+  wide: string;
 }
 
 interface Breakpoints extends Array<string> {
@@ -12,6 +14,8 @@ interface Breakpoints extends Array<string> {
   mobileM: string;
   mobileL: string;
   tablet: string;
+  desktop: string;
+  wide: string;
 }
 
 interface TextType {
