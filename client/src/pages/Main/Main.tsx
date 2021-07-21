@@ -4,19 +4,14 @@ import { getPosts } from 'api/postApi';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import useAsync from 'hook/useAsync';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store/reducer';
-import { LogoutAction } from 'store/action';
-import Info from 'component/User/Info';
+
 /**
  * @description
  * Page의 Layout은 공통으로 뽑아서 사용? 폴더 내부에서 선언?
  */
 const Main = () => {
   const history = useHistory();
-  const login = useSelector((state: RootState) => state.AuthReducer);
-  const dispatch = useDispatch();
-  const { execute, data: post } = useAsync<Posts[]>(getPosts); // useAsync<Posts[]>(getPosts, true) => 이벤트로 fetch
+  const { data: post } = useAsync<Posts[]>(getPosts); // useAsync<Posts[]>(getPosts, true) => 이벤트로 fetch
   const [posts, setPosts] = useState<Posts[]>();
 
   useEffect(() => {
