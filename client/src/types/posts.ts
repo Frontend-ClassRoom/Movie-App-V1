@@ -5,6 +5,11 @@ export interface Posts {
   body: string;
 }
 
+export interface PostsSize {
+  width: number;
+  height: number;
+}
+
 export function getEmptyPosts() {
   return {
     userId: 0,
