@@ -1,5 +1,4 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { createUserAccount } from 'api/userApi';
 import { Button, InputBox } from 'component';
 import { Account } from 'types/user';
 import useAsync from 'hook/useAsync';
@@ -9,9 +8,11 @@ import { RootState } from 'store/reducer';
 import { StyledWrapper } from 'pages/Login/Styled';
 import { JoinForm, StyledTitle } from './Styled';
 import { validation } from 'utils/ValidationObject';
+import userApi from 'api/userApi';
 
 const Join = () => {
   const history = useHistory();
+  const { run: Login } = useAsync<Account>(userApi.login);
   const { isLoggedIn } = useSelector((state: RootState) => state.AuthReducer);
   const [account, setAccount] = useState<Account>({
     id: '',
@@ -35,16 +36,6 @@ const Join = () => {
     };
   };
 
-  const { execute: submit, data } = useAsync(
-    () =>
-      createUserAccount({
-        id: account.id,
-        name: account.name,
-        password: account.password,
-      }),
-    false
-  );
-
   const onChangeAccount = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const { value, name } = e.target;
@@ -57,25 +48,22 @@ const Join = () => {
   );
 
   const onSubmit = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
-      const { password, confirmPassword } = account;
-
+      const { id, name, password, confirmPassword } = account;
+      const response = await Login({ id, name, password });
+      console.log(response);
       if (password !== confirmPassword) {
         alert('비밀번호가 같아야합니다.');
         return;
       }
 
       if (validation<Account>(account)) {
-        submit();
         setAccount(clearInput());
-        history.push('/login');
-        /**
-         * submit 후에 return data를 확인해서 history.push('/login') 하거나 로직 협의
-         */
+        // history.push('/');
       }
     },
-    [account, data]
+    [account, Login]
   );
 
   return (
