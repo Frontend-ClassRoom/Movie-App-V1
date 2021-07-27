@@ -36,7 +36,12 @@ const Join = () => {
   };
 
   const { execute: submit, data } = useAsync(
-    () => createUserAccount(account),
+    () =>
+      createUserAccount({
+        id: account.id,
+        name: account.name,
+        password: account.password,
+      }),
     false
   );
 
@@ -62,9 +67,9 @@ const Join = () => {
       }
 
       if (validation<Account>(account)) {
-        alert('아직 백엔드 로그인 로직이 머지전이라 에러가 나는게 정상입니다.');
         submit();
         setAccount(clearInput());
+        history.push('/login');
         /**
          * submit 후에 return data를 확인해서 history.push('/login') 하거나 로직 협의
          */
@@ -106,7 +111,7 @@ const Join = () => {
         />
         <InputBox
           className="join-form"
-          value={account.confirmPassword}
+          value={account.confirmPassword || ''}
           name="confirmPassword"
           type="password"
           placeholder="비밀번호를 한번더 입력해주세요."
