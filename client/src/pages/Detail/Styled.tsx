@@ -6,16 +6,21 @@ interface PostsSize {
   height: number;
 }
 
-export const StyledDetail = styled.div<PostsSize>`
+export const StyledContainer = styled.div``;
+
+export const StyledDetail = styled.div`
   padding: 50px;
-  width: ${({ width }) => width ? `${width}px` : '100%'};
   margin: 0 auto;
+  padding: 10px;
   border-radius: 10px;
   border: 1px solid ${({ theme }) => theme.colors.greys.grey4};
-  padding: 10px;
-  height: ${({ height }) => height ? `${height}px` : '100%'};
   box-shadow: ${({ theme }) => hexTorgba(theme.colors.greys.grey4, 0.5)} 0px 2px 4px;
 
+  .review-front {
+    display: flex;
+    align-items: center;
+
+  }
   .poster {
     position: relative;
     border-radius: 8px;
