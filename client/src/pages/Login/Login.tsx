@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/reducer';
@@ -25,14 +25,16 @@ const Login = () => {
   };
 
   const onChangeUserId = useCallback(
-    (value) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
       setUserId(value);
     },
     [userId]
   );
 
   const onChangeUserPassword = useCallback(
-    (value) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
       setUserPassword(value);
     },
     [userPassword]
@@ -64,7 +66,7 @@ const Login = () => {
     <StyledWrapper>
       <StyledTitle>Welcome to MovieApp</StyledTitle>
       <StyledText>Your personal guide to the world of cinema</StyledText>
-      <LoginForm onSubmit={setLoginUser}>
+      <LoginForm onSubmit={setLoginUser} method="post">
         <InputBox
           value={userId}
           type="text"

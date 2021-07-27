@@ -1,7 +1,7 @@
 import React from 'react';
 import { Movie } from 'types/movie';
 import { StyledList, ListDesc, ListThumbnail } from './Styled';
-import Thumbnail from '../../Thumbnail/Thumbnail';
+import Thumbnail from 'component/Thumbnail/Thumbnail';
 
 interface ListProps {
   movie: Movie;
