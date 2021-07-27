@@ -11,6 +11,7 @@ export const StyledHeader = styled.div`
   background: #fff;
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
   transition: box-shadow 0.5s ease;
+  z-index: 10;
 `;
 
 export const StyledHeaderContents = styled.div`
