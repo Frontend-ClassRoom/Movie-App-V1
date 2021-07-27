@@ -15,7 +15,7 @@ export interface dbConfigModel  {
 }
 
 export interface UserAttributes {
-    id: number;
+    id: string;
     password: string;
     name: string;
 }

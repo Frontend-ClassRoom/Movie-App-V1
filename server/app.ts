@@ -44,6 +44,7 @@ class App {
         })
 
         this.application.post('/login', userController.postLogin);
+        this.application.post('/join', userController.join);
     }
 }
 

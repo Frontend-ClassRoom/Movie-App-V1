@@ -5,7 +5,7 @@ import { UserAttributes } from '../types/dbModel';
 interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
 
 class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
-    public id!: number;
+    public id!: string;
     public password!: string;
     public name: string;
 
@@ -16,8 +16,7 @@ class User extends Model<UserAttributes, UserCreationAttributes> implements User
 User.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            autoIncrement: true,
+            type: DataTypes.STRING(128),
             primaryKey: true,
         },
         password: {
