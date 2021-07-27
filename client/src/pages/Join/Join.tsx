@@ -12,7 +12,7 @@ import userApi from 'api/userApi';
 
 const Join = () => {
   const history = useHistory();
-  const { run: Login } = useAsync<Account>(userApi.login);
+  const { run: Login, data, loading } = useAsync<Account>(userApi.login);
   const { isLoggedIn } = useSelector((state: RootState) => state.AuthReducer);
   const [account, setAccount] = useState<Account>({
     id: '',
@@ -47,24 +47,21 @@ const Join = () => {
     [account]
   );
 
-  const onSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      const { id, name, password, confirmPassword } = account;
-      const response = await Login({ id, name, password });
-      console.log(response);
-      if (password !== confirmPassword) {
-        alert('비밀번호가 같아야합니다.');
-        return;
-      }
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    const { id, name, password, confirmPassword } = account;
 
-      if (validation<Account>(account)) {
-        setAccount(clearInput());
-        // history.push('/');
-      }
-    },
-    [account, Login]
-  );
+    if (password !== confirmPassword) {
+      alert('비밀번호가 같아야합니다.');
+      return;
+    }
+
+    if (validation<Account>(account)) {
+      Login({ id, name, password });
+      setAccount(clearInput());
+      history.push('/');
+    }
+  };
 
   return (
     <StyledWrapper>

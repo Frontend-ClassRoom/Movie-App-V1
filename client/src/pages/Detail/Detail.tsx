@@ -1,8 +1,9 @@
-import { getPostDetail } from 'api/postApi';
-import { useEffect, useState } from 'react';
+import postApi from 'api/postApi';
+import useAsync from 'hook/useAsync';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { getEmptyPosts, Posts } from 'types/posts';
+import { Posts } from 'types/posts';
 
 /**
  * @description
@@ -10,30 +11,22 @@ import { getEmptyPosts, Posts } from 'types/posts';
  */
 const Detail = () => {
   const { id } = useParams<{ id: string }>();
-  const [detail, setDetail] = useState<Posts>();
-
-  const fetchPostDetail = async () => {
-    // fetch Hook 사용 여부 확인필요 => ex) useAxios
-    if (!id) return;
-    const postId = parseInt(id);
-    const post = await getPostDetail(postId);
-    if (post) {
-      setDetail(post);
-    }
-  };
+  const {
+    run: getDetail,
+    data: detail,
+    loading,
+    error,
+  } = useAsync<Posts>(postApi.getPostDetail); // 2번째 인자값이 없다면 함수를 실행해야 하므로 run 함수 실행
 
   useEffect(() => {
     if (id) {
-      fetchPostDetail();
+      getDetail(id);
     }
-    return () => {
-      setDetail(getEmptyPosts());
-    };
   }, [id]);
 
   return (
     <StyledDetail>
-      {detail ? (
+      {!loading ? (
         <>
           <p>{detail?.userId}</p>
           <p>{detail?.title}</p>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Posts } from 'types/posts';
-import { getPosts } from 'api/postApi';
+import postApi from 'api/postApi';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import useAsync from 'hook/useAsync';
@@ -11,7 +11,11 @@ import useAsync from 'hook/useAsync';
  */
 const Main = () => {
   const history = useHistory();
-  const [posts, setPosts] = useState<Posts[]>();
+  const {
+    data: posts,
+    loading,
+    error,
+  } = useAsync<Posts[]>(postApi.getPosts, true);
 
   const handleDetailPost = (postId: number) => {
     if (!postId) return;

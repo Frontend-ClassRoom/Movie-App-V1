@@ -71,7 +71,6 @@ const useAsync = <T>(callback: AsyncFunction<T>, onMount?: boolean) => {
 
   const run = useCallback(
     async (...args) => {
-      console.log(...args);
       dispatch({ type: LOADING });
 
       // 로그인 토큰이 존재할때 사용
