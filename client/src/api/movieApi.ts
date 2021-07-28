@@ -19,14 +19,12 @@ class movieApi {
   public getPopularMovie: AsyncFunction<MovieResult> = async () => {
     const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR&page=1`;
     const response = await this.apiClient.get(url);
-    console.log(response);
     return response.data;
   };
 
   public getMovieInformation: AsyncFunction<Movie> = async (movieId) => {
     const url = `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=ko-KR`;
     const response = await this.apiClient.get(url);
-    console.log(response);
     return response.data;
   };
 }
