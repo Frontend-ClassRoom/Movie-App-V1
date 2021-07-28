@@ -1,15 +1,30 @@
-import axios from "axios";
-import { Posts } from "types/posts";
-import { AxiosReturn } from "utils/AxiosReturn";
+import axios, { AxiosInstance } from 'axios';
+import { AsyncFunction } from 'hook/useAsync';
+import { Posts } from 'types/posts';
 
-const BASE_URL = "https://jsonplaceholder.typicode.com";
+const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-export const getPosts = () => {
-  const url = `${BASE_URL}/posts`;
-  return axios.get<Posts[]>(url).then((res) => res.data);
-};
+class postApi {
+  private readonly apiClient: AxiosInstance;
 
-export const getPostDetail = (postId: number) => {
-  const url = `${BASE_URL}/posts/${postId}`;
-  return axios.get<Posts>(url).then(AxiosReturn);
-};
+  constructor() {
+    this.apiClient = axios.create({
+      baseURL: BASE_URL,
+      timeout: 1000,
+      // 요청이 timeout보다 오래 걸리면 요청이 중단됩니다.
+      // timeout: 1000, 기본값은 '0'(시간 제한 없음)
+    });
+  }
+
+  public getPosts: AsyncFunction<Posts[]> = async () => {
+    const response = await this.apiClient.get('/posts');
+    return response.data;
+  };
+
+  public getPostDetail: AsyncFunction<Posts> = async (postId) => {
+    const response = await this.apiClient.get(`/posts/${postId}`);
+    return response.data;
+  };
+}
+
+export default new postApi();

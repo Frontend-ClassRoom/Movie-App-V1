@@ -1,5 +1,4 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { createUserAccount } from 'api/userApi';
 import { Button, InputBox } from 'component';
 import { Account } from 'types/user';
 import useAsync from 'hook/useAsync';
@@ -9,9 +8,11 @@ import { RootState } from 'store/reducer';
 import { StyledWrapper } from 'pages/Login/Styled';
 import { JoinForm, StyledTitle } from './Styled';
 import { validation } from 'utils/ValidationObject';
+import userApi from 'api/userApi';
 
 const Join = () => {
   const history = useHistory();
+  const { run: Login, data, loading } = useAsync<Account>(userApi.login);
   const { isLoggedIn } = useSelector((state: RootState) => state.AuthReducer);
   const [account, setAccount] = useState<Account>({
     id: '',
@@ -35,11 +36,6 @@ const Join = () => {
     };
   };
 
-  const { execute: submit, data } = useAsync(
-    () => createUserAccount(account),
-    false
-  );
-
   const onChangeAccount = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const { value, name } = e.target;
@@ -51,27 +47,21 @@ const Join = () => {
     [account]
   );
 
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      const { password, confirmPassword } = account;
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    const { id, name, password, confirmPassword } = account;
 
-      if (password !== confirmPassword) {
-        alert('비밀번호가 같아야합니다.');
-        return;
-      }
+    if (password !== confirmPassword) {
+      alert('비밀번호가 같아야합니다.');
+      return;
+    }
 
-      if (validation<Account>(account)) {
-        alert('아직 백엔드 로그인 로직이 머지전이라 에러가 나는게 정상입니다.');
-        submit();
-        setAccount(clearInput());
-        /**
-         * submit 후에 return data를 확인해서 history.push('/login') 하거나 로직 협의
-         */
-      }
-    },
-    [account, data]
-  );
+    if (validation<Account>(account)) {
+      Login({ id, name, password });
+      setAccount(clearInput());
+      history.push('/');
+    }
+  };
 
   return (
     <StyledWrapper>
@@ -106,7 +96,7 @@ const Join = () => {
         />
         <InputBox
           className="join-form"
-          value={account.confirmPassword}
+          value={account.confirmPassword || ''}
           name="confirmPassword"
           type="password"
           placeholder="비밀번호를 한번더 입력해주세요."

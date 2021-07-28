@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Posts } from 'types/posts';
-import { getPosts } from 'api/postApi';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import useAsync from 'hook/useAsync';
 import { StyledList, StyledListItem, StyledPhotoCard } from './Styled';
+import postApi from 'api/postApi';
 
 /**
  * @description
@@ -12,19 +12,17 @@ import { StyledList, StyledListItem, StyledPhotoCard } from './Styled';
  */
 const Main = () => {
   const history = useHistory();
-  const { data: post } = useAsync<Posts[]>(getPosts); // useAsync<Posts[]>(getPosts, true) => 이벤트로 fetch
-  const [posts, setPosts] = useState<Posts[]>();
+  const {
+    data: posts,
+    loading,
+    error,
+  } = useAsync<Posts[]>(postApi.getPosts, true);
 
-  useEffect(() => {
-    if (post && !posts) {
-      const slicePost = post.slice(0, 10);
-      setPosts(slicePost);
-    }
+  const handleDetailPost = (postId: number) => {
+    if (!postId) return;
+    history.push(`/post/${postId}`);
+  };
 
-    return () => {
-      setPosts([]);
-    };
-  }, [post]);
   /**
    *
    * @description useAxios
@@ -43,11 +41,6 @@ const Main = () => {
    * (useAsync Hook 의 상태값을 변경못함)
    *
    */
-
-  const handleDetailPost = (postId: number) => {
-    if (!postId) return;
-    history.push(`/post/${postId}`);
-  };
 
   return (
     <StyledMain>
