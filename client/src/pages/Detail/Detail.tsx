@@ -20,9 +20,6 @@ import useAsync from 'hook/useAsync';
  */
 
 const Detail = () => {
-  const [flip, setFilp] = useState<boolean>(false);
-  const { isMobileView } = useBreackPoints();
-
   const { id } = useParams<{ id: string }>();
   const {
     run: getDetail,
@@ -30,6 +27,8 @@ const Detail = () => {
     loading,
     error,
   } = useAsync<Posts>(postApi.getPostDetail); // 2번째 인자값이 없다면 함수를 실행해야 하므로 run 함수 실행
+  const [flip, setFilp] = useState<boolean>(false);
+  const { isMobileView } = useBreackPoints();
 
   useEffect(() => {
     if (id) {
