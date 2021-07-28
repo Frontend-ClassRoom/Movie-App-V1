@@ -1,31 +1,27 @@
 import React, { useEffect } from 'react';
-import { getMovieInformation } from 'api/movieApi';
+import movieApi from 'api/movieApi';
 import useAsync from 'hook/useAsync';
 import { Movie } from 'types/movie';
 import { useParams } from 'react-router-dom';
+import Thumbnail from 'component/Thumbnail/Thumbnail';
 
 const MovieDetail = () => {
-  // const { data: movieDitail } = useAsync<Movie>(getMovieInformation);
+  const { run: movieDetail, data } = useAsync<Movie>(
+    movieApi.getMovieInformation
+  );
   const { id } = useParams<{ id: string }>();
-
-  const fetchPostDetail = async () => {
-    // fetch Hook 사용 여부 확인필요 => ex) useAxios
-    if (!id) return;
-    const postId = parseInt(id);
-    const post = await getMovieInformation(postId);
-    console.log(post);
-  };
 
   useEffect(() => {
     if (id) {
-      fetchPostDetail();
+      movieDetail(id);
     }
   }, [id]);
 
   return (
     <div>
       page
-      <span>test</span>
+      <Thumbnail width={300} thumbnailUrl={data?.backdrop_path} />
+      <span>{data?.original_title}</span>
     </div>
   );
 };

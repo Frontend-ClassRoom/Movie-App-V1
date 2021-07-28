@@ -1,15 +1,34 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
+import { AsyncFunction } from 'hook/useAsync';
 import { Movie, MovieResult } from 'types/movie';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = process.env.REACT_APP_MOVIE_API;
+class movieApi {
+  private readonly apiClient: AxiosInstance;
 
-export const getPopularMovie = () => {
-  const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR&page=1`;
-  return axios.get<MovieResult>(url).then((res) => res.data);
-};
+  constructor() {
+    this.apiClient = axios.create({
+      baseURL: BASE_URL,
+      timeout: 1000,
+      // 요청이 timeout보다 오래 걸리면 요청이 중단됩니다.
+      // timeout: 1000, 기본값은 '0'(시간 제한 없음)
+    });
+  }
 
-export const getMovieInformation = (movie_id: number) => {
-  const url = `${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}&language=ko-KR`;
-  return axios.get<Movie>(url).then((res) => res.data);
-};
+  public getPopularMovie: AsyncFunction<MovieResult> = async () => {
+    const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR&page=1`;
+    const response = await this.apiClient.get(url);
+    console.log(response);
+    return response.data;
+  };
+
+  public getMovieInformation: AsyncFunction<Movie> = async (movieId) => {
+    const url = `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=ko-KR`;
+    const response = await this.apiClient.get(url);
+    console.log(response);
+    return response.data;
+  };
+}
+
+export default new movieApi();
