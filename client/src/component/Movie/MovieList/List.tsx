@@ -14,16 +14,17 @@ const List = ({ movie }: ListProps) => {
     if (!moveId) return;
     history.push(`/movie-detail/${moveId}`);
   };
-
+  console.log(movie);
   return (
     <StyledList onClick={() => handleDetailMovie(movie.id)}>
-      <ListDesc>
-        <strong>{movie.title}</strong>
-        <p>{movie.overview}</p>
-      </ListDesc>
       <ListThumbnail>
-        <Thumbnail width={300} thumbnailUrl={movie.backdrop_path} />
+        <Thumbnail width={300} thumbnailUrl={movie.poster_path} />
       </ListThumbnail>
+      <ListDesc>
+        <p className="title">{movie.title}</p>
+        <p className="release-date">{movie.release_date}</p>
+        <p className="overview">{movie.overview}</p>
+      </ListDesc>
     </StyledList>
   );
 };

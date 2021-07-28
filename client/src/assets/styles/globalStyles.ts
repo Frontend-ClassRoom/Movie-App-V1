@@ -13,7 +13,6 @@ export const GlobalStyle = createGlobalStyle`
     color: #000;
   }
   html {
-    font-size: 16px;
     width: 100%;
     height:100%;
   }
@@ -23,6 +22,8 @@ export const GlobalStyle = createGlobalStyle`
     height:100%;
     min-width: 320px;
     font-family: "Noto Sans KR", sans-serif;
+    font-size: ${(props) => props.theme.baseFont.fontSize};
+    color: ${(props) => props.theme.baseFont.fontColor};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { ellipsis, hexTorgba, transformRem } from 'assets/styles';
+import {
+  ellipsis,
+  hexTorgba,
+  mediaQueriesMax,
+  transformRem,
+} from 'assets/styles';
 
 export const StyledList = styled.ul`
   display: flex;
@@ -23,7 +28,7 @@ export const StyledListItem = styled.li`
     transition: all 0.3s ease;
     cursor: pointer;
   */
-  ${({ theme }) => theme.mediaQueries.max.wide} {
+  ${mediaQueriesMax('wide')`
     width: calc(100% / 4 - 10px);
 
     &:nth-child(n + 5) {
@@ -37,8 +42,9 @@ export const StyledListItem = styled.li`
     &:nth-child(4n) {
       margin-right: 0px;
     }
-  }
-  ${({ theme }) => theme.mediaQueries.max.desktop} {
+  `};
+
+  ${mediaQueriesMax('desktop')`
     width: calc(100% / 3 - 10px);
 
     &:nth-child(n + 4) {
@@ -52,9 +58,9 @@ export const StyledListItem = styled.li`
     &:nth-child(3n) {
       margin-right: 0px;
     }
-  }
+  `};
 
-  ${({ theme }) => theme.mediaQueries.max.tablet} {
+  ${mediaQueriesMax('tablet')`
     width: calc(100% / 2 - 10px);
 
     &:nth-child(n + 3) {
@@ -68,7 +74,7 @@ export const StyledListItem = styled.li`
     &:nth-child(2n) {
       margin-right: 0px;
     }
-  }
+  `};
 `;
 
 export const StyledPhotoCard = styled.div`
@@ -77,18 +83,20 @@ export const StyledPhotoCard = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.greys.grey4};
   padding: 10px;
   height: 100%;
-  box-shadow: ${({ theme }) => hexTorgba(theme.colors.greys.grey4, 0.5)} 0px 2px 4px;
+  box-shadow: ${({ theme }) => hexTorgba(theme.colors.greys.grey4, 0.5)} 0px 2px
+    4px;
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.primary};
-    box-shadow: ${({ theme }) => hexTorgba(theme.colors.primary, 0.5)} 0px 2px 4px;
+    box-shadow: ${({ theme }) => hexTorgba(theme.colors.primary, 0.5)} 0px 2px
+      4px;
 
     &:before,
     .poster:before {
       content: '';
       display: block;
       position: absolute;
-      top:0;
+      top: 0;
       left: 0;
       width: 100%;
       height: 100%;
@@ -98,7 +106,8 @@ export const StyledPhotoCard = styled.div`
       background-color: ${({ theme }) => hexTorgba(theme.colors.primary, 0.2)};
     }
     .poster:before {
-      background-color: ${({ theme }) => hexTorgba(theme.colors.greys.white, 0.2)};
+      background-color: ${({ theme }) =>
+        hexTorgba(theme.colors.greys.white, 0.2)};
     }
   }
 
