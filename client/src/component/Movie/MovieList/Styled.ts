@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { multipleEllipsis, transformEm, hexTorgba } from 'assets/styles';
+import {
+  multipleEllipsis,
+  transformEm,
+  hexTorgba,
+  mediaQueriesMax,
+} from 'assets/styles';
 
 export const StyledList = styled.div`
   display: flex;
@@ -12,6 +17,10 @@ export const StyledList = styled.div`
   box-shadow: ${({ theme }) => hexTorgba(theme.colors.greys.grey4, 0.5)} 0px 2px
     4px;
   overflow: hidden;
+
+  ${mediaQueriesMax.tablet`
+    padding: 6px;
+  `}
 `;
 
 export const ListDesc = styled.div`
@@ -24,6 +33,10 @@ export const ListDesc = styled.div`
     display: block;
     margin-bottom: 10px;
     font-weight: 700;
+
+    ${mediaQueriesMax.tablet`
+      font-size: 14px
+    `}
   }
 
   .overview {

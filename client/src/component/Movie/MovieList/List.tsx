@@ -18,7 +18,7 @@ const List = ({ movie }: ListProps) => {
   return (
     <StyledList onClick={() => handleDetailMovie(movie.id)}>
       <ListThumbnail>
-        <Thumbnail width={300} thumbnailUrl={movie.poster_path} />
+        <Thumbnail width={100} thumbnailUrl={movie.poster_path} />
       </ListThumbnail>
       <ListDesc>
         <p className="title">{movie.title}</p>

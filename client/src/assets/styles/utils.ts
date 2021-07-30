@@ -72,7 +72,8 @@ export const transformPx = (em: number, fontSize?: number): string => {
   const size = fontSize || baseFontSize;
   return `${size * em}px`;
 };
-
+/*
+// style parameter에 변수 적용이 안됨
 export const mediaQueriesMax = (key: keyof typeof breakpoints) => {
   return (style: TemplateStringsArray | String) =>
     `@media (max-width: ${breakpoints[key]}px) { ${style} }`;
@@ -82,3 +83,20 @@ export const mediaQueriesMin = (key: keyof typeof breakpoints) => {
   return (style: TemplateStringsArray | String) =>
     `@media (min-width: ${breakpoints[key] + 1}px) { ${style} }`;
 };
+*/
+
+export const mediaQueriesMax = (
+  Object.keys(breakpoints) as Array<keyof typeof breakpoints>
+).reduce((acc, key) => {
+  acc[key] = (style: String) =>
+    `@media (max-width: ${breakpoints[key]}px) { ${style} }`;
+  return acc;
+}, {} as { [index: string]: Function });
+
+export const mediaQueriesMin = (
+  Object.keys(breakpoints) as Array<keyof typeof breakpoints>
+).reduce((acc, key) => {
+  acc[key] = (style: String) =>
+    `@media (min-width: ${breakpoints[key]}px) { ${style} }`;
+  return acc;
+}, {} as { [index: string]: Function });

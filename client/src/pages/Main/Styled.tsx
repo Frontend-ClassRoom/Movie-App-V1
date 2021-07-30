@@ -28,7 +28,7 @@ export const StyledListItem = styled.li`
     transition: all 0.3s ease;
     cursor: pointer;
   */
-  ${mediaQueriesMax('wide')`
+  ${mediaQueriesMax.wide`
     width: calc(100% / 4 - 10px);
 
     &:nth-child(n + 5) {
@@ -44,7 +44,7 @@ export const StyledListItem = styled.li`
     }
   `};
 
-  ${mediaQueriesMax('desktop')`
+  ${mediaQueriesMax.desktop`
     width: calc(100% / 3 - 10px);
 
     &:nth-child(n + 4) {
@@ -60,7 +60,7 @@ export const StyledListItem = styled.li`
     }
   `};
 
-  ${mediaQueriesMax('tablet')`
+  ${mediaQueriesMax.tablet`
     width: calc(100% / 2 - 10px);
 
     &:nth-child(n + 3) {
