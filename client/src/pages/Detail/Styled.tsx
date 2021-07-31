@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import { ellipsis, hexTorgba, transformEm, transformRem } from 'assets/styles';
-
-interface PostsSize {
-  width: number;
-  height: number;
-}
+import { hexTorgba, transformRem } from 'assets/styles';
 
 export const StyledContainer = styled.div``;
 
@@ -14,7 +9,8 @@ export const StyledDetail = styled.div`
   max-width: 480px;
   border: 1px solid ${({ theme }) => theme.colors.greys.grey4};
   border-radius: 10px;
-  box-shadow: ${({ theme }) => hexTorgba(theme.colors.greys.grey4, 0.5)} 0px 2px 4px;
+  box-shadow: ${({ theme }) => hexTorgba(theme.colors.greys.grey4, 0.5)} 0px 2px
+    4px;
   overflow: hidden;
 
   @media (min-width: 769px) {
@@ -92,7 +88,7 @@ export const StyledBack = styled.div`
 
     .register-date {
       font-size: ${transformRem(14)};
-      color: ${(props) => props.theme.colors.greys.grey3}
+      color: ${(props) => props.theme.colors.greys.grey3};
     }
   }
 
@@ -102,7 +98,7 @@ export const StyledBack = styled.div`
     border-bottom: 1px solid ${(props) => props.theme.colors.greys.grey4};
     font-size: ${transformRem(24)};
     font-weight: 700;
-    color: ${(props) => props.theme.colors.greys.grey1}
+    color: ${(props) => props.theme.colors.greys.grey1};
   }
 
   dl {
@@ -114,21 +110,6 @@ export const StyledBack = styled.div`
       margin-bottom: ${transformRem(8)};
       font-weight: 700;
       color: ${(props) => props.theme.colors.greys.grey2};
-    }
-
-    .rate {
-      span {
-        display: inline-block;
-        font-size: ${transformRem(20)};
-        color: ${(props) => props.theme.colors.primary};
-        vertical-align: middle;
-      }
-      strong {
-        display: inline-block;
-        margin-left: ${transformRem(12)};
-        font-size: ${transformRem(14)};
-        vertical-align: middle;
-      }
     }
 
     .watched-date svg {
@@ -155,7 +136,7 @@ export const StyledBack = styled.div`
       }
 
       button {
-        padding: ${(props) => props.theme.buttonSizes.small.padding};
+        padding: 0.375rem 0.75rem;
       }
     }
 
@@ -165,7 +146,6 @@ export const StyledBack = styled.div`
     }
 
     dl {
-
       dt.title {
         font-size: ${transformRem(14)};
       }

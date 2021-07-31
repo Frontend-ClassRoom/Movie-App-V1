@@ -1,26 +1,20 @@
 import styled from 'styled-components';
-import {
-  multipleEllipsis,
-  transformEm,
-  hexTorgba,
-  mediaQueriesMax,
-} from 'assets/styles';
+import { multipleEllipsis, transformEm, hexTorgba } from 'assets/styles';
 
 export const StyledList = styled.div`
   display: flex;
   align-items: stretch;
   margin-bottom: 12px;
   padding: 10px;
-  width: 100%;
   border: 1px solid ${({ theme }) => theme.colors.greys.grey4};
   border-radius: 10px;
   box-shadow: ${({ theme }) => hexTorgba(theme.colors.greys.grey4, 0.5)} 0px 2px
     4px;
   overflow: hidden;
 
-  ${mediaQueriesMax.tablet`
+  @media (max-width: 768px) {
     padding: 6px;
-  `}
+  }
 `;
 
 export const ListDesc = styled.div`
@@ -34,9 +28,9 @@ export const ListDesc = styled.div`
     margin-bottom: 10px;
     font-weight: 700;
 
-    ${mediaQueriesMax.tablet`
-      font-size: 14px
-    `}
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 
   .overview {
@@ -51,8 +45,19 @@ export const ListDesc = styled.div`
 `;
 
 export const ListThumbnail = styled.div`
+  position: relative;
   flex: 0 0 auto;
   width: 100px;
-  border-radius: 6px;
+  height: 150px;
   overflow: hidden;
+
+  .movie-poster {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+  }
 `;

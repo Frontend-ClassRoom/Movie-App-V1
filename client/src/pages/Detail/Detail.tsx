@@ -2,15 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import postApi from 'api/postApi';
 import { useBreackPoints } from 'hook/useBreackPoints';
-import { Posts, PostsSize } from 'types/posts';
+import { Posts } from 'types/posts';
 import {
   StyledContainer,
   StyledDetail,
   StyledFront,
   StyledBack,
 } from './Styled';
-import { Button } from 'component';
-import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import { Button, Rate } from 'component';
 import { BiCalendarCheck } from 'react-icons/bi';
 import useAsync from 'hook/useAsync';
 
@@ -77,16 +76,7 @@ const Detail = () => {
             <dl>
               <dt className="title">Rate</dt>
               <dd>
-                <div className="rate">
-                  <span>
-                    <BsStarFill />
-                    <BsStarFill />
-                    <BsStarHalf />
-                    <BsStar />
-                    <BsStar />
-                  </span>
-                  <strong>2.5점</strong>
-                </div>
+                <Rate score={2.5} className="rate" />
               </dd>
             </dl>
             <dl>

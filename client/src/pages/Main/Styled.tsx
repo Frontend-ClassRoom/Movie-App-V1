@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import {
-  ellipsis,
-  hexTorgba,
-  mediaQueriesMax,
-  transformRem,
-} from 'assets/styles';
+import { ellipsis, hexTorgba, transformRem } from 'assets/styles';
 
 export const StyledList = styled.ul`
   display: flex;
@@ -28,7 +23,7 @@ export const StyledListItem = styled.li`
     transition: all 0.3s ease;
     cursor: pointer;
   */
-  ${mediaQueriesMax.wide`
+  @media (max-width: 1280px) {
     width: calc(100% / 4 - 10px);
 
     &:nth-child(n + 5) {
@@ -42,9 +37,9 @@ export const StyledListItem = styled.li`
     &:nth-child(4n) {
       margin-right: 0px;
     }
-  `};
+  }
 
-  ${mediaQueriesMax.desktop`
+  @media (max-width: 1024px) {
     width: calc(100% / 3 - 10px);
 
     &:nth-child(n + 4) {
@@ -58,9 +53,9 @@ export const StyledListItem = styled.li`
     &:nth-child(3n) {
       margin-right: 0px;
     }
-  `};
+  }
 
-  ${mediaQueriesMax.tablet`
+  @media (max-width: 768px) {
     width: calc(100% / 2 - 10px);
 
     &:nth-child(n + 3) {
@@ -74,7 +69,7 @@ export const StyledListItem = styled.li`
     &:nth-child(2n) {
       margin-right: 0px;
     }
-  `};
+  }
 `;
 
 export const StyledPhotoCard = styled.div`
