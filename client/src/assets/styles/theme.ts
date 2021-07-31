@@ -1,5 +1,33 @@
 import { hexTorgba } from './utils';
 
+const breakpoints = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
+  desktop: '1024px',
+  wide: '1280px',
+};
+
+const mediaQueries = {
+  min: {
+    mobileS: `@media screen and (min-width: ${breakpoints.mobileS})`,
+    mobileM: `@media screen and (min-width: ${breakpoints.mobileM})`,
+    mobileL: `@media screen and (min-width: ${breakpoints.mobileL})`,
+    tablet: `@media screen and (min-width: ${breakpoints.tablet})`,
+    desktop: `@media screen and (min-width: ${breakpoints.desktop})`,
+    wide: `@media screen and (min-width: ${breakpoints.wide})`,
+  },
+  max: {
+    mobileS: `@media screen and (max-width: ${breakpoints.mobileS})`,
+    mobileM: `@media screen and (max-width: ${breakpoints.mobileM})`,
+    mobileL: `@media screen and (max-width: ${breakpoints.mobileL})`,
+    tablet: `@media screen and (max-width: ${breakpoints.tablet})`,
+    desktop: `@media screen and (max-width: ${breakpoints.desktop})`,
+    wide: `@media screen and (max-width: ${breakpoints.wide})`,
+  },
+};
+
 const colors = {
   primary: '#a5d6a7',
   secondary: '#bcaaa4',
@@ -146,6 +174,8 @@ const inputs = {
 };
 
 export const theme = {
+  breakpoints,
+  mediaQueries,
   colors,
   baseFont,
   fontSizes,

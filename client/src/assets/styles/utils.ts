@@ -83,7 +83,7 @@ export const mediaQueriesMin = (key: keyof typeof breakpoints) => {
   return (style: TemplateStringsArray | String) =>
     `@media (min-width: ${breakpoints[key] + 1}px) { ${style} }`;
 };
-*/
+ */
 
 export const mediaQueriesMax = (
   Object.keys(breakpoints) as Array<keyof typeof breakpoints>
@@ -97,6 +97,6 @@ export const mediaQueriesMin = (
   Object.keys(breakpoints) as Array<keyof typeof breakpoints>
 ).reduce((acc, key) => {
   acc[key] = (style: String) =>
-    `@media (min-width: ${breakpoints[key]}px) { ${style} }`;
+    `@media (min-width: ${breakpoints[key] + 1}px) { ${style} }`;
   return acc;
 }, {} as { [index: string]: Function });

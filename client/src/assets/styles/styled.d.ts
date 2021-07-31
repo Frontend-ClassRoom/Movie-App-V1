@@ -1,5 +1,23 @@
 import 'styled-components';
 
+interface BreakpointSizes {
+  mobileS: string;
+  mobileM: string;
+  mobileL: string;
+  tablet: string;
+  desktop: string;
+  wide: string;
+}
+
+interface Breakpoints extends Array<string> {
+  mobileS: string;
+  mobileM: string;
+  mobileL: string;
+  tablet: string;
+  desktop: string;
+  wide: string;
+}
+
 interface TextType {
   fontSize: string;
   fontWeight?: string;
@@ -17,6 +35,12 @@ interface ButtonSizeType {
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    breakpoints: BreakpointSizes;
+    mediaQueries: {
+      min: BreakpointSizes;
+      max: BreakpointSizes;
+    };
+
     colors: {
       primary: string; // 녹색
       secondary: string; // 갈색
