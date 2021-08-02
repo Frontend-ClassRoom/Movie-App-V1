@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import movieApi from 'api/movieApi';
 import useAsync from 'hook/useAsync';
 import { Movie } from 'types/movie';
@@ -22,6 +22,12 @@ const MovieDetail = () => {
       page
       <Thumbnail width={300} thumbnailUrl={data?.backdrop_path} />
       <span>{data?.original_title}</span>
+      {data?.genres.map((genres, index) => (
+        <p key={index} style={{ marginTop: '20px' }}>
+          <span>{genres.id}</span>
+          <span>{genres.name}</span>
+        </p>
+      ))}
     </div>
   );
 };

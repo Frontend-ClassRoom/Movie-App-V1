@@ -48,6 +48,7 @@ const Detail = () => {
   };
 
   console.log(isMobileView || flip);
+  console.log(detail);
 
   return (
     <StyledContainer>
