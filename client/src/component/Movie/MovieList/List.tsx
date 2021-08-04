@@ -14,7 +14,7 @@ const List = ({ movie }: ListProps) => {
     if (!moveId) return;
     history.push(`/movie-detail/${moveId}`);
   };
-  console.log(movie);
+
   return (
     <StyledList onClick={() => handleDetailMovie(movie.id)}>
       <ListThumbnail>

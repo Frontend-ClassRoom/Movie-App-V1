@@ -4,8 +4,13 @@ import useAsync from 'hook/useAsync';
 import { Movie } from 'types/movie';
 import { useParams } from 'react-router-dom';
 import Thumbnail from 'component/Thumbnail/Thumbnail';
-import { Rate } from 'component';
-import { StyledMovieDetail, StyledBasicInfo } from './Styled';
+import { Rate, Badge } from 'component';
+import {
+  StyledMovieDetail,
+  StyledBasicWrap,
+  StyledBasicInfo,
+  StyledVisualPoster,
+} from './Styled';
 
 const MovieDetail = () => {
   const { run: movieDetail, data } = useAsync<Movie>(
@@ -19,29 +24,32 @@ const MovieDetail = () => {
     }
   }, [id]);
 
+  console.log(data, data?.genres);
+
   return (
     <StyledMovieDetail>
-      <StyledBasicInfo>
-        <div className="main-poster-wrap">
+      <StyledBasicWrap>
+        <StyledVisualPoster>
           <Thumbnail
             width={300}
             thumbnailUrl={data?.backdrop_path}
-            className="main-poster"
+            className="visual-poster"
           />
-        </div>
-        <div className="">
+        </StyledVisualPoster>
+        <StyledBasicInfo>
           <Thumbnail
-            width={300}
+            width={100}
             thumbnailUrl={data?.poster_path}
-            className=""
+            className="main-poster"
           />
           <div>
             <div className="tit">{data?.title}</div>
             <Rate score={data?.vote_average} />
+            <Badge items={data && data?.genres} hash={true} />
           </div>
-        </div>
-      </StyledBasicInfo>
-      <div>{data?.original_title}</div>
+        </StyledBasicInfo>
+      </StyledBasicWrap>
+      <div>{data?.overview}</div>
     </StyledMovieDetail>
   );
 };

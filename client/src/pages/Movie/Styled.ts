@@ -31,16 +31,26 @@ export const StyledMovie = styled.div`
 
 export const StyledMovieDetail = styled.div`
   margin: -20px -${transformEm(16)} 0;
+  max-width: 768px;
 
-  .main-poster-wrap {
-    overflow: hidden;
-    max-width: 768px;
-    margin: 0 auto;
-    padding-bottom: 56.86%;
-    position: relative;
+  @media (min-width: 769px) {
+    margin: -20px auto 0;
   }
+`;
 
-  .main-poster {
+export const StyledBasicWrap = styled.div`
+  position: relative;
+  margin: 0 auto;
+  max-width: 768px;
+`;
+
+export const StyledVisualPoster = styled.div`
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 56.86%;
+  position: relative;
+
+  .visual-poster {
     display: block;
     position: absolute;
     width: 120%;
@@ -61,11 +71,10 @@ export const StyledMovieDetail = styled.div`
   }
 
   @media (min-width: 769px) {
-    .main-poster-wrap {
-      padding-bottom: 430px;
-      position: relative;
-    }
-    .main-poster {
+    padding-bottom: 430px;
+    position: relative;
+
+    .visual-poster {
       left: 50%;
       width: 850px;
       height: auto;
@@ -86,4 +95,18 @@ export const StyledMovieDetail = styled.div`
 
 export const StyledBasicInfo = styled.div`
   position: relative;
+  display: flex;
+  align-items: flex-end;
+  margin-top: -100px;
+
+  .main-poster {
+    max-width: 150px;
+    min-width: 80px;
+    width: 20%;
+    flex: 0 0 auto;
+  }
+
+  .main-poster + div {
+    flex: 1 1 auto;
+  }
 `;
