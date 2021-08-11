@@ -14,13 +14,22 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
   genres: GenresArray[];
+  runtime: number;
 }
 
 export interface GenresArray {
   id: number;
   name: string;
 }
+
 export interface MovieResult {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+}
+
+export interface SimilarMovie {
   page: number;
   results: Movie[];
   total_pages: number;

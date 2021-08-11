@@ -97,16 +97,24 @@ export const StyledBasicInfo = styled.div`
   position: relative;
   display: flex;
   align-items: flex-end;
-  margin-top: -100px;
+  margin: 0 ${transformEm(10)};
+  transform: translateY(-50%);
 
+  @media (min-width: 769px) {
+    margin: 0 ${transformEm(20)};
+    transform: translateY(-60%);
+  }
   .main-poster {
     max-width: 150px;
     min-width: 80px;
     width: 20%;
     flex: 0 0 auto;
+    border-radius: ${transformEm(12)};
+    overflow: hidden;
   }
 
   .main-poster + div {
     flex: 1 1 auto;
+    margin-left: ${transformEm(12)};
   }
 `;
