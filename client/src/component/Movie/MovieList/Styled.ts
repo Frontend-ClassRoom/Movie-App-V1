@@ -3,7 +3,6 @@ import { multipleEllipsis, transformEm, hexTorgba } from 'assets/styles';
 
 export const StyledList = styled.div`
   display: flex;
-  align-items: stretch;
   margin-bottom: 12px;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.colors.greys.grey4};
@@ -14,6 +13,35 @@ export const StyledList = styled.div`
 
   @media (max-width: 768px) {
     padding: 6px;
+  }
+
+  &.list {
+    align-items: stretch;
+  }
+
+  &.card {
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+
+    > * {
+      width: 100% !important;
+      height: auto !important;
+
+      &:last-child {
+        padding: 10px 0 0 0;
+        margin: 0;
+      }
+
+      .movie-poster {
+        position: static;
+        transform: unset;
+      }
+
+      .title {
+        margin-bottom: 4px;
+      }
+    }
   }
 `;
 

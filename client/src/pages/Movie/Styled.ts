@@ -2,29 +2,31 @@ import styled from 'styled-components';
 import { transformEm, transformRem } from 'assets/styles';
 
 export const StyledMovie = styled.div`
-  @media (min-width: 769px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: -5px;
 
-    > * {
+  > * {
+    margin: 5px;
+    width: calc((100% / 3) - 10px);
+
+    @media (max-width: 769px) {
       width: calc(50% - 10px);
-      margin: 5px;
     }
   }
 
-  @media (min-width: 1025px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: -5px;
+  &.card {
+    align-items: stretch;
 
     > * {
-      width: calc((100% / 3) - 10px);
-      margin: 5px;
+      width: calc((100% / 6) - 10px);
+      padding: 6px;
+
+      @media (max-width: 769px) {
+        width: calc((100% / 3) - 10px);
+      }
     }
   }
 `;
@@ -38,7 +40,7 @@ export const StyledMovieDetail = styled.div`
   }
 `;
 
-export const StyledBasicWrap = styled.div`
+export const StyledSummary = styled.div`
   position: relative;
   margin: 0 auto;
   max-width: 768px;
@@ -93,16 +95,22 @@ export const StyledVisualPoster = styled.div`
   }
 `;
 
-export const StyledBasicInfo = styled.div`
+export const StyledInfo = styled.div`
   position: relative;
   display: flex;
   align-items: flex-end;
-  margin: 0 ${transformEm(10)};
-  transform: translateY(-50%);
+  margin: -120px ${transformEm(20)} 0;
 
-  @media (min-width: 769px) {
-    margin: 0 ${transformEm(20)};
-    transform: translateY(-60%);
+  @media (max-width: 768px) {
+    margin: -90px ${transformEm(10)} 0;
+  }
+
+  @media (max-width: 580px) {
+    margin: -60px ${transformEm(10)} 0;
+  }
+
+  @media (max-width: 425px) {
+    margin: -40px ${transformEm(10)} 0;
   }
 
   .main-poster {
@@ -120,11 +128,15 @@ export const StyledBasicInfo = styled.div`
         rgba(255, 255, 255, 0.5) 0px 0px 0px 1px;
     }
   }
+`;
 
-  .main-poster + div {
-    flex: 1 1 auto;
-    padding-left: ${transformEm(12)};
-    background-color: #fff;
+export const StyledBasicInfo = styled.div`
+  flex: 1 1 auto;
+  padding-left: ${transformEm(12)};
+  background-color: #fff;
+
+  .tit {
+    font-weight: 700;
   }
 
   .rote {
@@ -132,5 +144,64 @@ export const StyledBasicInfo = styled.div`
     span {
       font-size: ${transformRem(14)};
     }
+  }
+`;
+
+export const StyledDiscription = styled.div`
+  padding: 40px 20px 20px;
+`;
+
+export const StyledDiscriptionItem = styled.div`
+  &:not(:first-of-type) {
+    margin-top: 10px;
+  }
+
+  .tit {
+    font-weight: 700;
+    font-size: ${transformRem(16)};
+  }
+
+  .desc {
+    font-size: ${transformRem(14)};
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  &.simple {
+    display: flex;
+    align-items: center;
+
+    .tit {
+      position: relative;
+      padding-right: 10px;
+      margin-right: 10px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 1px;
+        height: ${transformRem(12)};
+        transform: translateY(-50%);
+        background-color: ${(props) => props.theme.colors.greys.grey4};
+      }
+    }
+
+    .desc {
+      margin-top: 0;
+      line-height: 1;
+    }
+  }
+`;
+
+export const StyledSimilar = styled.div`
+  padding: 40px 20px 20px;
+
+  .tit {
+    display: inline-block;
+    font-weight: 700;
+    font-size: ${transformRem(20)};
+    margin-bottom: 10px;
   }
 `;

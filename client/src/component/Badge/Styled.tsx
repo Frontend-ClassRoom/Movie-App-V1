@@ -6,6 +6,7 @@ export const StyledBadge = styled.div`
 
   &.badge-hash span::before {
     content: '#';
+    padding-right: 2px;
   }
 `;
 

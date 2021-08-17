@@ -7,10 +7,14 @@ import Thumbnail from 'component/Thumbnail/Thumbnail';
 import { Rate, Badge } from 'component';
 import {
   StyledMovieDetail,
-  StyledBasicWrap,
-  StyledBasicInfo,
+  StyledSummary,
+  StyledInfo,
   StyledVisualPoster,
   StyledMovie,
+  StyledBasicInfo,
+  StyledDiscription,
+  StyledDiscriptionItem,
+  StyledSimilar,
 } from './Styled';
 import List from 'component/Movie/MovieList/List';
 
@@ -34,7 +38,7 @@ const MovieDetail = () => {
 
   return (
     <StyledMovieDetail>
-      <StyledBasicWrap>
+      <StyledSummary>
         <StyledVisualPoster>
           <Thumbnail
             width={300}
@@ -42,49 +46,49 @@ const MovieDetail = () => {
             className="visual-poster"
           />
         </StyledVisualPoster>
-        <StyledBasicInfo>
+        <StyledInfo>
           <Thumbnail
             width={100}
             thumbnailUrl={data?.poster_path}
             className="main-poster"
           />
-          <div>
+          <StyledBasicInfo>
             <div className="tit">{data?.title}</div>
             <Rate score={data?.vote_average} className="rote" />
             <Badge items={data && data?.genres} hash={true} />
-          </div>
-        </StyledBasicInfo>
-      </StyledBasicWrap>
-      <div>
-        <div>
-          <strong>개봉일</strong>
-          <p>{data?.release_date}</p>
-        </div>
-        <div>
-          <strong>런타임</strong>
-          <p>
-            {data && Math.floor(data?.runtime / 60)}시간 {data?.runtime % 60}분
+          </StyledBasicInfo>
+        </StyledInfo>
+      </StyledSummary>
+      <StyledDiscription>
+        <StyledDiscriptionItem className="simple">
+          <strong className="tit">개봉일</strong>
+          <p className="desc">{data?.release_date}</p>
+        </StyledDiscriptionItem>
+        <StyledDiscriptionItem className="simple">
+          <strong className="tit">런타임</strong>
+          <p className="desc">
+            {Math.floor(data?.runtime / 60)}시간 {data?.runtime % 60}분
           </p>
-        </div>
-        <div>
-          <strong>평점</strong>
-          <Rate score={data?.vote_average} />
-        </div>
-        <div>
-          <strong>줄거리</strong>
-          <p>{data?.overview}</p>
-        </div>
-      </div>
-      <div>
-        <strong>유사한 영화</strong>
-        <StyledMovie>
+        </StyledDiscriptionItem>
+        <StyledDiscriptionItem>
+          <strong className="tit">줄거리</strong>
+          <p className="desc">{data?.overview}</p>
+        </StyledDiscriptionItem>
+      </StyledDiscription>
+      <StyledSimilar>
+        <strong className="tit">유사한 영화</strong>
+        <StyledMovie className="card">
           {similarMovieData &&
             similarMovieData.results.length > 0 &&
             similarMovieData.results.map((movie: Movie, index) => {
-              return index > 5 ? '' : <List key={movie.id} movie={movie} />;
+              return index > 5 ? (
+                ''
+              ) : (
+                <List key={movie.id} movie={movie} type="card" />
+              );
             })}
         </StyledMovie>
-      </div>
+      </StyledSimilar>
     </StyledMovieDetail>
   );
 };

@@ -6,9 +6,10 @@ import { useHistory } from 'react-router-dom';
 
 interface ListProps {
   movie: Movie;
+  type?: 'card' | 'list';
 }
 
-const List = ({ movie }: ListProps) => {
+const List = ({ movie, type = 'list' }: ListProps) => {
   const history = useHistory();
   const handleDetailMovie = (moveId: number) => {
     if (!moveId) return;
@@ -16,7 +17,7 @@ const List = ({ movie }: ListProps) => {
   };
 
   return (
-    <StyledList onClick={() => handleDetailMovie(movie.id)}>
+    <StyledList className={type} onClick={() => handleDetailMovie(movie.id)}>
       <ListThumbnail>
         <Thumbnail
           width={100}
@@ -27,7 +28,7 @@ const List = ({ movie }: ListProps) => {
       <ListDesc>
         <p className="title">{movie.title}</p>
         <p className="release-date">{movie.release_date}</p>
-        <p className="overview">{movie.overview}</p>
+        {type === 'list' && <p className="overview">{movie.overview}</p>}
       </ListDesc>
     </StyledList>
   );
