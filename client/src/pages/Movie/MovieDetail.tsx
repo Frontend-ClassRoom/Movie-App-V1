@@ -50,6 +50,7 @@ const MovieDetail = () => {
           />
           <div>
             <div className="tit">{data?.title}</div>
+            <Rate score={data?.vote_average} className="rote" />
             <Badge items={data && data?.genres} hash={true} />
           </div>
         </StyledBasicInfo>
@@ -61,7 +62,9 @@ const MovieDetail = () => {
         </div>
         <div>
           <strong>런타임</strong>
-          <p>{data?.runtime}</p>
+          <p>
+            {data && Math.floor(data?.runtime / 60)}시간 {data?.runtime % 60}분
+          </p>
         </div>
         <div>
           <strong>평점</strong>

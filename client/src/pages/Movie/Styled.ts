@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { transformEm } from 'assets/styles';
+import { transformEm, transformRem } from 'assets/styles';
 
 export const StyledMovie = styled.div`
   @media (min-width: 769px) {
@@ -104,17 +104,33 @@ export const StyledBasicInfo = styled.div`
     margin: 0 ${transformEm(20)};
     transform: translateY(-60%);
   }
+
   .main-poster {
+    position: relative;
+    z-index: 1;
     max-width: 150px;
     min-width: 80px;
     width: 20%;
     flex: 0 0 auto;
-    border-radius: ${transformEm(12)};
-    overflow: hidden;
+
+    img {
+      border-radius: ${transformEm(12)};
+      overflow: hidden;
+      box-shadow: rgba(0, 0, 0, 0.5) 0px 6px 24px 0px,
+        rgba(255, 255, 255, 0.5) 0px 0px 0px 1px;
+    }
   }
 
   .main-poster + div {
     flex: 1 1 auto;
-    margin-left: ${transformEm(12)};
+    padding-left: ${transformEm(12)};
+    background-color: #fff;
+  }
+
+  .rote {
+    margin: ${transformEm(4)} 0;
+    span {
+      font-size: ${transformRem(14)};
+    }
   }
 `;
