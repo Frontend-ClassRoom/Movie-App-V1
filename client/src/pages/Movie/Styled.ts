@@ -24,8 +24,12 @@ export const StyledMovie = styled.div`
       width: calc((100% / 6) - 10px);
       padding: 6px;
 
-      @media (max-width: 769px) {
+      @media (max-width: 768px) {
         width: calc((100% / 3) - 10px);
+      }
+
+      @media (max-width: 425px) {
+        width: calc(50% - 10px);
       }
     }
   }
@@ -157,8 +161,23 @@ export const StyledDiscriptionItem = styled.div`
   }
 
   .tit {
+    position: relative;
+    display: inline-block;
     font-weight: 700;
     font-size: ${transformRem(16)};
+    padding-right: 10px;
+    margin-right: 10px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 1px;
+      height: ${transformRem(12)};
+      transform: translateY(-50%);
+      background-color: ${(props) => props.theme.colors.greys.grey4};
+    }
   }
 
   .desc {
@@ -170,23 +189,6 @@ export const StyledDiscriptionItem = styled.div`
   &.simple {
     display: flex;
     align-items: center;
-
-    .tit {
-      position: relative;
-      padding-right: 10px;
-      margin-right: 10px;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: 0;
-        width: 1px;
-        height: ${transformRem(12)};
-        transform: translateY(-50%);
-        background-color: ${(props) => props.theme.colors.greys.grey4};
-      }
-    }
 
     .desc {
       margin-top: 0;

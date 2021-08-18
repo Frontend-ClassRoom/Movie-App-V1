@@ -26,16 +26,15 @@ export const StyledList = styled.div`
 
     > * {
       width: 100% !important;
-      height: auto !important;
+
+      &:first-child {
+        height: auto;
+        padding-bottom: 150%;
+      }
 
       &:last-child {
         padding: 10px 0 0 0;
         margin: 0;
-      }
-
-      .movie-poster {
-        position: static;
-        transform: unset;
       }
 
       .title {

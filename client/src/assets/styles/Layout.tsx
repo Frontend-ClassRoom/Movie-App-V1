@@ -31,5 +31,5 @@ export default Layout;
 const StyledLayout = styled.div`
   position: relative;
   margin: 0 auto;
-  padding: ${transformEm(90)} ${transformEm(16)};
+  padding: ${transformEm(90)} ${transformEm(16)} ${transformEm(30)};
 `;
