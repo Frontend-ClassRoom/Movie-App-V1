@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { StyledInputBox } from './Styled';
 
 interface InputBoxProps {
@@ -7,9 +7,10 @@ interface InputBoxProps {
   name?: string;
   placeholder?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  submit: (e: any) => void;
+  submit?: (e: any) => void;
   className?: string;
   autoComplete?: string;
+  readonly?: boolean;
 }
 
 const InputBox = ({
@@ -21,18 +22,22 @@ const InputBox = ({
   submit,
   name,
   autoComplete = 'off',
+  readonly = false,
 }: InputBoxProps) => {
   return (
     <StyledInputBox className={className}>
       <input
+        style={{ width: '100%' }}
         type={type}
         value={value}
         name={name}
         onChange={(e) => onChange(e)}
-        onKeyPress={(e) => e.key === 'Enter' && submit(e)}
+        onKeyPress={(e) =>
+          e.key === 'Enter' && typeof submit === 'function' && submit(e)
+        }
         placeholder={placeholder}
         title={placeholder}
-        style={{ width: '100%' }}
+        readOnly={readonly}
         autoComplete={autoComplete}
       />
     </StyledInputBox>
