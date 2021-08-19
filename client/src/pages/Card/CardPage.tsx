@@ -16,7 +16,8 @@ const CardPage = () => {
         Post 생성
       </button>
       <StyledCardContainer>
-        {posts && posts.map((post) => <CardList post={post} />)}
+        {posts &&
+          posts.map((post) => <CardList key={post.postId} post={post} />)}
       </StyledCardContainer>
     </>
   );
