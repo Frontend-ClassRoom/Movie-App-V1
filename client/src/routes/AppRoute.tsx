@@ -10,6 +10,7 @@ import MovieDetailPage from 'pages/Movie/MovieDetail';
 import Join from 'pages/Join/Join';
 import AuthRedirect from 'utils/AuthRedirect';
 import Layout from 'assets/styles/Layout';
+import CardPage from 'pages/Card/CardPage';
 
 const AppRoute: FC = () => {
   return (
@@ -26,6 +27,7 @@ const AppRoute: FC = () => {
             component={MovieDetailPage}
           />
           <Route path={AppRoutePath.SETTING_PATH} component={SettingPage} />
+          <Route path={AppRoutePath.MYCARD_PATH} component={CardPage} />
         </AuthRedirect>
       </Switch>
     </Layout>
