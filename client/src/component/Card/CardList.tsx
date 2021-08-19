@@ -1,10 +1,15 @@
 import React from 'react';
+import { Post } from 'store/reducer/Posts';
 import { StyledCardList } from './Styled';
 
-const CardList = () => {
+interface CardListProps {
+  post: Post;
+}
+
+const CardList = ({ post }: CardListProps) => {
   return (
     <StyledCardList>
-      <p>CardList</p>
+      <p>{post.contents}</p>
     </StyledCardList>
   );
 };

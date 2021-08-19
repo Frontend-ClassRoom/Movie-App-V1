@@ -8,7 +8,8 @@ import postsReducer from './Posts/postsReducer';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['AuthReducer'],
+  whitelist: ['AuthReducer', 'PostReducer'],
+  // PostReducer => 서버로 저장하기 전 로직 테스트
 };
 
 const rootReducer = combineReducers({

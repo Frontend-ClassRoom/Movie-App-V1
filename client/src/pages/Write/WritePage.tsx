@@ -1,14 +1,28 @@
 import { InputBox, TextAreaBox } from 'component';
 import { ChangeEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CreatePostAction, WritePostAction } from 'store/action/Posts';
+import { useHistory } from 'react-router-dom';
+import {
+  ClearWriteValue,
+  CreatePostAction,
+  WritePostAction,
+} from 'store/action/Posts';
 import { RootState } from 'store/reducer';
+import { AppRoutePath } from 'types/routes';
 import { StyledWritePage } from './Styled';
 
 const WritePage = () => {
   const { write, posts } = useSelector((state: RootState) => state.PostReducer);
   const { user } = useSelector((state: RootState) => state.AuthReducer);
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    return () => {
+      console.log('clear');
+      dispatch(ClearWriteValue());
+    };
+  }, []);
 
   const handleWritePost = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
@@ -18,6 +32,10 @@ const WritePage = () => {
   };
 
   const handleSubmitPost = () => {
+    if (write.contents === '' || write.contents.length < 0) {
+      alert('실패');
+      return;
+    }
     const nextId = posts.length + 1;
     const postPayload = {
       ...write,
@@ -25,11 +43,8 @@ const WritePage = () => {
       postId: nextId,
     };
     dispatch(CreatePostAction(postPayload));
+    history.push(AppRoutePath.MYCARD_PATH);
   };
-
-  useEffect(() => {
-    console.log(write);
-  }, [write]);
 
   return (
     <StyledWritePage>

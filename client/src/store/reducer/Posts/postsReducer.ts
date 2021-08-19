@@ -1,4 +1,5 @@
 import {
+  ClearWriteValue,
   CreatePostAction,
   DeletePostAction,
   UpdatePostAction,
@@ -6,10 +7,10 @@ import {
 } from 'store/action/Posts';
 
 export const WRITE_POST = 'posts/WRITE_POST' as const;
+export const CLEAR_WRITE = 'posts/CLEAR_WRITE' as const;
 export const CREATE_POST = 'posts/CREATE_POST' as const;
 export const DELETE_POST = 'posts/DELETE_POST' as const;
 export const UPDATE_POST = 'posts/UPDATE_POST' as const;
-
 export interface PostState {
   posts: Post[];
   write: Post;
@@ -28,7 +29,8 @@ export type PostsActionType =
   | ReturnType<typeof CreatePostAction>
   | ReturnType<typeof DeletePostAction>
   | ReturnType<typeof UpdatePostAction>
-  | ReturnType<typeof WritePostAction>;
+  | ReturnType<typeof WritePostAction>
+  | ReturnType<typeof ClearWriteValue>;
 
 const initialState: PostState = {
   posts: [],
@@ -86,7 +88,11 @@ const postsReducer = (state = initialState, action: PostsActionType) => {
         ...state,
         posts: updatePost,
       };
-
+    case 'posts/CLEAR_WRITE':
+      return {
+        ...state,
+        write: action.write,
+      };
     default:
       return state;
   }
