@@ -14,7 +14,7 @@ export const Rate = ({ score, className = '' }: RateProps) => {
   const rateResult: JSX.Element[] = [];
 
   const emptyStar = (num: number) => {
-    for (let i = 0; i < num; i++) {
+    for (let i = STAR_NUMBER; i + fill < num; i++) {
       rateResult.push(<BsStar key={i} />);
     }
     return rateResult;
@@ -25,10 +25,10 @@ export const Rate = ({ score, className = '' }: RateProps) => {
       rateResult.push(<BsStarFill key={i} />);
     }
     if (half) {
-      rateResult.push(<BsStarHalf />);
-      emptyStar(STAR_NUMBER - 1 - fill);
+      rateResult.push(<BsStarHalf key={fill} />);
+      emptyStar(STAR_NUMBER + fill + 1);
     } else {
-      emptyStar(STAR_NUMBER - fill);
+      emptyStar(STAR_NUMBER + fill);
     }
     return rateResult;
   };

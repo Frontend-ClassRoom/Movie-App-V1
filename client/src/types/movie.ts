@@ -35,3 +35,38 @@ export interface SimilarMovie {
   total_pages: number;
   total_results: number;
 }
+
+export interface CreditsMovie {
+  id: number;
+  cast: CreditCastArray[];
+  crew: CreditCrewArray[];
+}
+
+export interface CreditCastArray {
+  adult: boolean;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  order: number;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+}
+
+export interface CreditCrewArray {
+  adult: boolean;
+  credit_id: string;
+  department: string;
+  gender: number;
+  id: number;
+  job: string;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+}

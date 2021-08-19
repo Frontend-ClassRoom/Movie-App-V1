@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import movieApi from 'api/movieApi';
 import useAsync from 'hook/useAsync';
-import { Movie, SimilarMovie } from 'types/movie';
+import {
+  Movie,
+  SimilarMovie,
+  CreditsMovie,
+  CreditCrewArray,
+  CreditCastArray,
+} from 'types/movie';
 import { useParams } from 'react-router-dom';
 import Thumbnail from 'component/Thumbnail/Thumbnail';
 import { Rate, Badge } from 'component';
@@ -25,16 +31,20 @@ const MovieDetail = () => {
   const { run: similarMovie, data: similarMovieData } = useAsync<SimilarMovie>(
     movieApi.getSimilarMovie
   );
+  const { run: creditsMovie, data: creditsMovieData } = useAsync<CreditsMovie>(
+    movieApi.getCreditsMovie
+  );
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
     if (id) {
       movieDetail(id);
       similarMovie(id);
+      creditsMovie(id);
     }
   }, [id]);
 
-  console.log(data, similarMovieData?.results);
+  console.log(data, creditsMovieData?.cast);
 
   return (
     <StyledMovieDetail>
@@ -70,9 +80,42 @@ const MovieDetail = () => {
             {Math.floor(data?.runtime / 60)}시간 {data?.runtime % 60}분
           </p>
         </StyledDiscriptionItem>
+        <StyledDiscriptionItem className="simple">
+          <strong className="tit">감독</strong>
+          <p className="desc">
+            {creditsMovieData &&
+              creditsMovieData?.crew.map(
+                ({ job, name }: CreditCrewArray): string | undefined => {
+                  return job === 'Director' ? name : '';
+                }
+              )}
+          </p>
+        </StyledDiscriptionItem>
         <StyledDiscriptionItem>
           <strong className="tit">줄거리</strong>
           <p className="desc">{data?.overview}</p>
+        </StyledDiscriptionItem>
+        <StyledDiscriptionItem style={{ marginTop: 20 }}>
+          <strong className="tit">출연진</strong>
+          <div className="desc">
+            {creditsMovieData &&
+              creditsMovieData?.cast.map(
+                ({ character, name, profile_path }: CreditCastArray, index) => {
+                  if (index > 4) return;
+                  return (
+                    <div className="cast">
+                      <Thumbnail
+                        width={300}
+                        thumbnailUrl={profile_path}
+                        className="thumb"
+                      />
+                      <strong>{name}</strong>
+                      <span>{character}</span>
+                    </div>
+                  );
+                }
+              )}
+          </div>
         </StyledDiscriptionItem>
       </StyledDiscription>
       <StyledSimilar>

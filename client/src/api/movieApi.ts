@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { AsyncFunction } from 'hook/useAsync';
-import { Movie, MovieResult, SimilarMovie } from 'types/movie';
+import { Movie, MovieResult, SimilarMovie, CreditsMovie } from 'types/movie';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = process.env.REACT_APP_MOVIE_API;
@@ -30,6 +30,12 @@ class movieApi {
 
   public getSimilarMovie: AsyncFunction<SimilarMovie> = async (movieId) => {
     const url = `${BASE_URL}/movie/${movieId}/similar?api_key=${API_KEY}&language=ko-KR`;
+    const response = await this.apiClient.get(url);
+    return response.data;
+  };
+
+  public getCreditsMovie: AsyncFunction<CreditsMovie> = async (movieId) => {
+    const url = `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=ko-KR`;
     const response = await this.apiClient.get(url);
     return response.data;
   };
