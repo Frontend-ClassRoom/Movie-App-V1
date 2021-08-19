@@ -7,4 +7,5 @@ export enum AppRoutePath {
   LOGIN_PATH = '/login',
   JOIN_PATH = '/join',
   MYCARD_PATH = '/card',
+  WRITE_PATH = '/write',
 }

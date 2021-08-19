@@ -11,6 +11,7 @@ import Join from 'pages/Join/Join';
 import AuthRedirect from 'utils/AuthRedirect';
 import Layout from 'assets/styles/Layout';
 import CardPage from 'pages/Card/CardPage';
+import WritePage from 'pages/Write/WritePage';
 
 const AppRoute: FC = () => {
   return (
@@ -28,6 +29,7 @@ const AppRoute: FC = () => {
           />
           <Route path={AppRoutePath.SETTING_PATH} component={SettingPage} />
           <Route path={AppRoutePath.MYCARD_PATH} component={CardPage} />
+          <Route path={AppRoutePath.WRITE_PATH} component={WritePage} />
         </AuthRedirect>
       </Switch>
     </Layout>
