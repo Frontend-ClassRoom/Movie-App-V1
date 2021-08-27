@@ -63,6 +63,7 @@ const WritePage = () => {
     const { name, value } = e.target;
     dispatch(WritePostAction(value, name));
     if (name === 'keyword' && value !== '' && write.title === '') {
+      // TODO : 디바운스 기능 필요
       searchMovie(value);
     }
   };
