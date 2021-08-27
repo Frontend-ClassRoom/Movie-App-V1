@@ -8,6 +8,7 @@ interface TextAreaBoxProps {
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   submit?: (e: any) => void;
   className?: string;
+  disabled?: boolean;
 }
 
 const TextAreaBox = ({
@@ -16,6 +17,7 @@ const TextAreaBox = ({
   placeholder,
   onChange,
   className,
+  disabled = false,
 }: TextAreaBoxProps) => {
   return (
     <StyledInputBox className={className}>
@@ -25,6 +27,7 @@ const TextAreaBox = ({
         placeholder={placeholder}
         onChange={onChange}
         title={placeholder}
+        disabled={disabled}
       />
     </StyledInputBox>
   );

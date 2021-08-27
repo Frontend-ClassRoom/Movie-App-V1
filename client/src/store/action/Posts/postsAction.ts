@@ -6,7 +6,6 @@ import {
   WRITE_POST,
   CLEAR_WRITE,
   CLEAR_POST,
-  SET_MOVIE_RESULT,
 } from 'store/reducer/Posts';
 
 export type UpdatePost = Pick<Post, 'contents' | 'contentImage' | 'postId'>;
@@ -33,6 +32,7 @@ export const ClearWriteValue = () => {
       likeCount: 0,
       contents: '',
       contentImage: '',
+      keyword: '',
     },
   };
 };
@@ -61,12 +61,5 @@ export const UpdatePostAction = (post: UpdatePost) => {
 export const ClearPostAction = () => {
   return {
     type: CLEAR_POST,
-  };
-};
-
-export const fetchSearchMovie = (movieList: any) => {
-  return {
-    type: SET_MOVIE_RESULT,
-    movieList,
   };
 };

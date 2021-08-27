@@ -39,6 +39,12 @@ class movieApi {
     const response = await this.apiClient.get(url);
     return response.data;
   };
+
+  public getSearchMovie: AsyncFunction<MovieResult> = async (name) => {
+    const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=ko-KR&query=${name}&page=1&include_adult=false`;
+    const response = await this.apiClient.get(url);
+    return response.data;
+  };
 }
 
 export default new movieApi();
