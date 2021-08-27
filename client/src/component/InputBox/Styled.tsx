@@ -8,10 +8,9 @@ export const StyledInputBox = styled.div`
   * {
     outline: none;
   }
+
   input {
     padding: ${(props) => props.theme.inputs.padding};
-    background-color: #fff;
-    border: 1px solid #999;
     border-radius: 50rem;
   }
 
@@ -20,6 +19,13 @@ export const StyledInputBox = styled.div`
     width: 100%;
     height: 300px;
     resize: none;
+    border-radius: 1rem;
+  }
+
+  input,
+  textarea {
+    background-color: #fff;
+    border: 1px solid #999;
   }
 
   &::placeholder {
