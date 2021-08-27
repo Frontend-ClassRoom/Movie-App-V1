@@ -4,6 +4,8 @@ import {
   DeletePostAction,
   UpdatePostAction,
   WritePostAction,
+  ClearPostAction,
+  fetchSearchMovie,
 } from 'store/action/Posts';
 
 export const WRITE_POST = 'posts/WRITE_POST' as const;
@@ -11,14 +13,19 @@ export const CLEAR_WRITE = 'posts/CLEAR_WRITE' as const;
 export const CREATE_POST = 'posts/CREATE_POST' as const;
 export const DELETE_POST = 'posts/DELETE_POST' as const;
 export const UPDATE_POST = 'posts/UPDATE_POST' as const;
+export const CLEAR_POST = 'posts/CLEAR_POST' as const;
+export const SET_MOVIE_RESULT = 'posts/SET_MOVIE_RESULT' as const;
+
 export interface PostState {
   posts: Post[];
+  movieResults: any[];
   write: Post;
 }
 
 export interface Post {
   userId: string;
   postId: number;
+  title: string;
   isLike?: boolean;
   likeCount?: number;
   contents: string;
@@ -30,13 +37,17 @@ export type PostsActionType =
   | ReturnType<typeof DeletePostAction>
   | ReturnType<typeof UpdatePostAction>
   | ReturnType<typeof WritePostAction>
-  | ReturnType<typeof ClearWriteValue>;
+  | ReturnType<typeof ClearWriteValue>
+  | ReturnType<typeof ClearPostAction>
+  | ReturnType<typeof fetchSearchMovie>;
 
 const initialState: PostState = {
   posts: [],
+  movieResults: [],
   write: {
     userId: '',
     postId: 0,
+    title: '',
     isLike: false,
     likeCount: 0,
     contents: '',
@@ -92,6 +103,16 @@ const postsReducer = (state = initialState, action: PostsActionType) => {
       return {
         ...state,
         write: action.write,
+      };
+    case 'posts/CLEAR_POST':
+      return {
+        ...state,
+        posts: [],
+      };
+    case 'posts/SET_MOVIE_RESULT':
+      return {
+        ...state,
+        movieResults: action.movieList,
       };
     default:
       return state;
